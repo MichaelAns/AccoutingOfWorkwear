@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccoutingOfWorkwear", "AccoutingOfWorkwear\AccoutingOfWorkwear.csproj", "{B88700B4-8F87-4D59-8000-93E7849B200E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoW.WPF", "AccoutingOfWorkwear\AoW.WPF.csproj", "{B88700B4-8F87-4D59-8000-93E7849B200E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoW.EntityFramework", "AoW.EntityFramework\AoW.EntityFramework.csproj", "{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B88700B4-8F87-4D59-8000-93E7849B200E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B88700B4-8F87-4D59-8000-93E7849B200E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B88700B4-8F87-4D59-8000-93E7849B200E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
