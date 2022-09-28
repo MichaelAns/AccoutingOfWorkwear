@@ -10,6 +10,7 @@ namespace AoW.EntityFramework.Models
         public string Street { get; set; }
         public int? Home { get; set; }
         public string Phone { get; set; }
+        public virtual ICollection<ReceiptInfo>? ReceiptInfos { get; set; }
 
 
     }
