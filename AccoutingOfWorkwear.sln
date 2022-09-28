@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoW.WPF", "AccoutingOfWorkwear\AoW.WPF.csproj", "{B88700B4-8F87-4D59-8000-93E7849B200E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoW.WPF", "AccoutingOfWorkwear\AoW.WPF.csproj", "{B88700B4-8F87-4D59-8000-93E7849B200E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoW.EntityFramework", "AoW.EntityFramework\AoW.EntityFramework.csproj", "{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoW.EntityFramework", "AoW.EntityFramework\AoW.EntityFramework.csproj", "{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM", "..\MVVM\MVVM.csproj", "{FFE625E8-6E74-4F34-B85D-875BE1A93E70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14CB2A61-8110-4A7B-A1DB-03D86EA7DD4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFE625E8-6E74-4F34-B85D-875BE1A93E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE625E8-6E74-4F34-B85D-875BE1A93E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE625E8-6E74-4F34-B85D-875BE1A93E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE625E8-6E74-4F34-B85D-875BE1A93E70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
