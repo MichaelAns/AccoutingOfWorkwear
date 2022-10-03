@@ -2,7 +2,7 @@
 
 namespace AoW.EntityFramework.Models
 {
-    public class Provider : BaseEntity<int>
+    public class Provider : BaseEntity
     {
         public string Name { get; set; }
         public string Country { get; set; }

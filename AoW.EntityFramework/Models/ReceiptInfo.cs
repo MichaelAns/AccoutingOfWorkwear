@@ -2,7 +2,7 @@
 
 namespace AoW.EntityFramework.Models
 {
-    public class ReceiptInfo : BaseEntity<int>
+    public class ReceiptInfo : BaseEntity
     {
         public int Count { get; set; }
         public DateOnly Date { get; set; }

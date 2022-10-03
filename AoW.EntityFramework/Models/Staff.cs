@@ -2,7 +2,7 @@
 
 namespace AoW.EntityFramework.Models
 {
-    public class Staff : BaseEntity<string>
+    public class Staff : BaseEntity
     {
         public string SecondName { get; set; }
         public string FirstName { get; set; }

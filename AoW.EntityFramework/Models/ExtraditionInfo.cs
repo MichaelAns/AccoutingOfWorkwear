@@ -1,6 +1,6 @@
 ﻿namespace AoW.EntityFramework.Models
 {
-    public class ExtraditionInfo : Base.BaseEntity<int>
+    public class ExtraditionInfo : Base.BaseEntity
     {
         public DateOnly Date { get; set; }
         public int Term { get; set;  }  
