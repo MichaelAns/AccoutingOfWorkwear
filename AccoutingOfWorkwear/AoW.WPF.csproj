@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Commands\" />
-    <Folder Include="Infrastructure\Navigators\" />
+    <ProjectReference Include="..\..\MVVM\MVVM.csproj" />
   </ItemGroup>
 
 </Project>
