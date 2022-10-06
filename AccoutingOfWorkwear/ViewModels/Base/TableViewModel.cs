@@ -6,8 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace AoW.WPF.ViewModels.Base
 {
@@ -144,6 +145,21 @@ namespace AoW.WPF.ViewModels.Base
 
         #endregion
 
+        // загрузка данных
+        private async void Load()
+        {
+            await Task.Run(() =>
+            {
+                using (var dbContext = _aowDbContextFactory.CreateDbContext())
+                {
+                    //Items = new(dbContext.Staff);
+                    SetList();
+                }
+            });
+        }
+
+        virtual protected void SetList() { }
+
         public TableViewModel()
         {
             _aowDbContextFactory = new();
@@ -151,6 +167,7 @@ namespace AoW.WPF.ViewModels.Base
             DeleteSelectedItem = new RelayCommand(DeleteItem, obj => true);
             AddNewRecord = new RelayCommand(AddRecord, obj => true);
             CommitChanges = new RelayCommand(Commit, obj => true);
+            Load();
         }
     }
 }

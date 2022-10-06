@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AoW.EntityFramework.Migrations
 {
     [DbContext(typeof(AowDbContext))]
-    [Migration("20220930162832_initial")]
-    partial class initial
+    [Migration("20221005102627_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,9 @@ namespace AoW.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("StaffId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Term")
                         .HasColumnType("INTEGER");
 
@@ -40,7 +43,7 @@ namespace AoW.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StaffID");
+                    b.HasIndex("StaffId");
 
                     b.HasIndex("WorkWearID");
 
@@ -113,8 +116,9 @@ namespace AoW.EntityFramework.Migrations
 
             modelBuilder.Entity("AoW.EntityFramework.Models.Staff", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -166,7 +170,7 @@ namespace AoW.EntityFramework.Migrations
                 {
                     b.HasOne("AoW.EntityFramework.Models.Staff", "Staff")
                         .WithMany("Extraditions")
-                        .HasForeignKey("StaffID")
+                        .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AoW.EntityFramework.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,8 @@ namespace AoW.EntityFramework.Migrations
                 name: "Staff",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     SecondName = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: true),
@@ -67,14 +68,15 @@ namespace AoW.EntityFramework.Migrations
                     Date = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     Term = table.Column<int>(type: "INTEGER", nullable: false),
                     WorkWearID = table.Column<int>(type: "INTEGER", nullable: false),
-                    StaffID = table.Column<string>(type: "TEXT", nullable: false)
+                    StaffID = table.Column<string>(type: "TEXT", nullable: false),
+                    StaffId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExtraditionInfo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ExtraditionInfo_Staff_StaffID",
-                        column: x => x.StaffID,
+                        name: "FK_ExtraditionInfo_Staff_StaffId",
+                        column: x => x.StaffId,
                         principalTable: "Staff",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -116,9 +118,9 @@ namespace AoW.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExtraditionInfo_StaffID",
+                name: "IX_ExtraditionInfo_StaffId",
                 table: "ExtraditionInfo",
-                column: "StaffID");
+                column: "StaffId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ExtraditionInfo_WorkWearID",
