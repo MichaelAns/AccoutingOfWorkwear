@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AoW.WPF.Controls"
+             xmlns:enums ="clr-namespace:AoW.WPF.Infrastructure.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -11,7 +12,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Accouting of Workwear" FontSize="35" Grid.Row="0" />
+        <TextBlock Text="Accouting of Workwear" FontSize="39" Grid.Row="0" />
         <Grid Grid.Row="1">
             <Grid.Resources>
                 <Style BasedOn="{StaticResource NavigationBarStyle}" TargetType="RadioButton"/>
@@ -23,7 +24,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <RadioButton Grid.Column="0" Content="Staff"/>
+            <RadioButton Grid.Column="0" Content="Staff" Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static enums:ViewType.Staff}"/>
             <RadioButton Grid.Column="1" Content="Staff"/>
             <RadioButton Grid.Column="2" Content="Staff"/>
             <RadioButton Grid.Column="3" Content="Staff"/>

@@ -26,11 +26,7 @@ namespace AoW.EntityFramework.Migrations
                     b.Property<DateOnly>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StaffID")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("StaffId")
+                    b.Property<int>("StaffID")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Term")
@@ -41,7 +37,7 @@ namespace AoW.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StaffId");
+                    b.HasIndex("StaffID");
 
                     b.HasIndex("WorkWearID");
 
@@ -97,17 +93,14 @@ namespace AoW.EntityFramework.Migrations
                     b.Property<int>("ProviderID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("WorkWearId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("WorkWerarID")
+                    b.Property<int>("WorkWearID")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProviderID");
 
-                    b.HasIndex("WorkWearId");
+                    b.HasIndex("WorkWearID");
 
                     b.ToTable("ReceiptInfo");
                 });
@@ -168,7 +161,7 @@ namespace AoW.EntityFramework.Migrations
                 {
                     b.HasOne("AoW.EntityFramework.Models.Staff", "Staff")
                         .WithMany("Extraditions")
-                        .HasForeignKey("StaffId")
+                        .HasForeignKey("StaffID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -193,7 +186,7 @@ namespace AoW.EntityFramework.Migrations
 
                     b.HasOne("AoW.EntityFramework.Models.WorkWear", "WorkWear")
                         .WithMany("ReceiptInfos")
-                        .HasForeignKey("WorkWearId")
+                        .HasForeignKey("WorkWearID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

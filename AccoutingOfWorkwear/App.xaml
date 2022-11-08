@@ -2,13 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:AccoutingOfWorkwear"
-             StartupUri="Windows/MainWindow.xaml">
+             xmlns:viewmodels ="clr-namespace:AoW.WPF.ViewModels"
+             xmlns:views ="clr-namespace:AoW.WPF.Views">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/OperationButtonStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/NavigationBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewmodels:StaffViewModel}">
+                <views:StaffView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

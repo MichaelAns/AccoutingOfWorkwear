@@ -68,15 +68,14 @@ namespace AoW.EntityFramework.Migrations
                     Date = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     Term = table.Column<int>(type: "INTEGER", nullable: false),
                     WorkWearID = table.Column<int>(type: "INTEGER", nullable: false),
-                    StaffID = table.Column<string>(type: "TEXT", nullable: false),
-                    StaffId = table.Column<int>(type: "INTEGER", nullable: false)
+                    StaffID = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExtraditionInfo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ExtraditionInfo_Staff_StaffId",
-                        column: x => x.StaffId,
+                        name: "FK_ExtraditionInfo_Staff_StaffID",
+                        column: x => x.StaffID,
                         principalTable: "Staff",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -97,8 +96,7 @@ namespace AoW.EntityFramework.Migrations
                     Count = table.Column<int>(type: "INTEGER", nullable: false),
                     Date = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     ProviderID = table.Column<int>(type: "INTEGER", nullable: false),
-                    WorkWerarID = table.Column<int>(type: "INTEGER", nullable: false),
-                    WorkWearId = table.Column<int>(type: "INTEGER", nullable: false)
+                    WorkWearID = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,17 +108,17 @@ namespace AoW.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ReceiptInfo_WorkWear_WorkWearId",
-                        column: x => x.WorkWearId,
+                        name: "FK_ReceiptInfo_WorkWear_WorkWearID",
+                        column: x => x.WorkWearID,
                         principalTable: "WorkWear",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExtraditionInfo_StaffId",
+                name: "IX_ExtraditionInfo_StaffID",
                 table: "ExtraditionInfo",
-                column: "StaffId");
+                column: "StaffID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ExtraditionInfo_WorkWearID",
@@ -133,9 +131,9 @@ namespace AoW.EntityFramework.Migrations
                 column: "ProviderID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReceiptInfo_WorkWearId",
+                name: "IX_ReceiptInfo_WorkWearID",
                 table: "ReceiptInfo",
-                column: "WorkWearId");
+                column: "WorkWearID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

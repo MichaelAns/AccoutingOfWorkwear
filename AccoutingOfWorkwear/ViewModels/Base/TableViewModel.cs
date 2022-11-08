@@ -18,21 +18,26 @@ namespace AoW.WPF.ViewModels.Base
         //для обращения к бд
         protected readonly AowDbContextFactory _aowDbContextFactory;
         //все записи
-        protected readonly ObservableCollection<TModel> _allItems;
+        protected List<TModel> _allItems;
         //id измененных записей         
         protected List<int> _updatedItemsIds;
         //фильтр
-        protected string _filter;
+        //protected string _filter;
 
         //
-        private ObservableCollection<TModel> _items;
+        private List<TModel> _items;
         private TModel _selectedItem;
 
         #region Свойства
-        public ObservableCollection<TModel> Items
+        public List<TModel> Items
         {
             get => _items;
-            set => Set(ref _items, value);  
+            set => Set(ref _items, value);              
+            /*set
+            {
+                _items = value;
+                OnPropertyChanged(nameof(Items));
+            }*/
         }
 
         public TModel SelectedItem
@@ -41,7 +46,11 @@ namespace AoW.WPF.ViewModels.Base
             set
             {
                 _selectedItem = value;
-                _updatedItemsIds.Add(_selectedItem.Id);
+                if (_selectedItem != null)
+                {
+                    _updatedItemsIds.Add(_selectedItem.Id);
+                }
+                OnPropertyChanged(nameof(SelectedItem));
             }
         }
         #endregion
@@ -153,12 +162,12 @@ namespace AoW.WPF.ViewModels.Base
                 using (var dbContext = _aowDbContextFactory.CreateDbContext())
                 {
                     //Items = new(dbContext.Staff);
-                    SetList();
+                    SetList(dbContext);
                 }
             });
         }
 
-        virtual protected void SetList() { }
+        virtual protected void SetList(AowDbContext dbContext) { }
 
         public TableViewModel()
         {
@@ -167,7 +176,7 @@ namespace AoW.WPF.ViewModels.Base
             DeleteSelectedItem = new RelayCommand(DeleteItem, obj => true);
             AddNewRecord = new RelayCommand(AddRecord, obj => true);
             CommitChanges = new RelayCommand(Commit, obj => true);
-            Load();
+            //Load();
         }
     }
 }

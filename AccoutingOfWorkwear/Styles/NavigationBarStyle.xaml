@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="NavigationBarStyle" TargetType="RadioButton">
         <Setter Property="Padding" Value="12 8"/>
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="5"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
@@ -19,14 +19,14 @@
             <EventTrigger RoutedEvent="MouseEnter">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation To="Gray" Duration="0:0:0:1" Storyboard.TargetProperty="Background.Color"/>
+                        <ColorAnimation To="Gray" Duration="0:0:0.1" Storyboard.TargetProperty="Background.Color"/>
                     </Storyboard>                    
                 </BeginStoryboard>
             </EventTrigger>
             <EventTrigger RoutedEvent="MouseLeave">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation To="White" Duration="0:0:0:1" Storyboard.TargetProperty = "Background.Color"/>
+                        <ColorAnimation To="White" Duration="0:0:0.1" Storyboard.TargetProperty = "Background.Color"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>

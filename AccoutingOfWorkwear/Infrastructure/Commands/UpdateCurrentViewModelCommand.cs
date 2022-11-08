@@ -1,5 +1,6 @@
 ﻿using AoW.WPF.Infrastructure.Enums;
 using AoW.WPF.Infrastructure.Navigators;
+using AoW.WPF.ViewModels;
 using MVVM.Commands;
 
 namespace AoW.WPF.Infrastructure.Commands
@@ -23,6 +24,7 @@ namespace AoW.WPF.Infrastructure.Commands
                 switch(viewType)
                 {
                     case ViewType.Staff:
+                        _navigator.CurrentViewModel = new StaffViewModel();
                         break;
                     case ViewType.ReceiptInfo:
                         break;

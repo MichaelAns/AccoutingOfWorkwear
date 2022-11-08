@@ -3,15 +3,7 @@ using AoW.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
 
 List<Staff> staff = new();
-/*staff.Add(new Staff()
-{
-    FirstName = "Ivan",
-    SecondName = "Ivanov",
-    LastName = "Ivaniich",
-    Post = "Serjant",
-    Profession = "Operator"
-}) ;
-staff.Add(new Staff()
+staff.Add(new Staff() 
 {
     FirstName = "Ivan",
     SecondName = "Ivanov",
@@ -19,37 +11,35 @@ staff.Add(new Staff()
     Post = "Serjant",
     Profession = "Operator"
 });
-staff.Add(new Staff()
-{
-    FirstName = "Ivan",
-    SecondName = "Ivanov",
-    LastName = "Ivaniich",
-    Post = "Serjant",
-    Profession = "Operator"
-});*/
 
-/*using (var dbContext = new AowDbContextFactory().CreateDbContext())
+
+using (var dbContext = new AowDbContextFactory().CreateDbContext())
 {
-    *//*dbContext.AddRange(staff);
-    dbContext.SaveChanges();*//*
-    
-    staff = new(dbContext.Staff);
-    Console.WriteLine("Succesfully");    
-    
-}*/
-Load();
-Console.WriteLine("-----OUT FROM LOAD");
-Console.WriteLine("////BEGIN WAITING");
-Thread.Sleep(5000);
-Console.WriteLine("////END WAITING");
-Console.WriteLine($"{staff[0].FirstName}\n{staff[1].FirstName}\n{staff[2].FirstName}");
+    for (int i = 5; i < 105; i++)
+    {
+        dbContext.Staff.Add(new Staff()
+        {
+            Id = i,
+            FirstName = "Ivan",
+            SecondName = "Ivanov",
+            LastName = "Ivaniich",
+            Post = "Serjant",
+            Profession = "Operator"
+        });        
+    }
+dbContext.SaveChanges();
+
+//staff = new(dbContext.Staff);
+Console.WriteLine("Succesfully");
+
+}
 
 async void Load()
 {
     System.Console.WriteLine("\t_BEGIN LOAD_\t");
     System.Console.WriteLine("|||||||BEGIN ASYNC METHOD");
     await Task.Run(() =>
-    {        
+    {
         using (var dbContext = new AowDbContextFactory().CreateDbContext())
         {
             //staff = new(dbContext.Staff);
@@ -63,6 +53,19 @@ async void Load()
 void Fikalis(AowDbContext dbContext)
 {
     Console.WriteLine("\nFIKALIS ARBEITEN\n");
-    staff = new(dbContext.Staff);
+    //staff = new(dbContext.Staff);
     Console.WriteLine("\nFIKALIS ARBEITEN\n");
+}
+void Test1()
+{
+    Load();
+    Console.WriteLine("-----OUT FROM LOAD");
+    Console.WriteLine("////BEGIN WAITING");
+    Thread.Sleep(5000);
+    Console.WriteLine("////END WAITING");
+    Console.WriteLine($"{staff[0].FirstName}\n{staff[1].FirstName}\n{staff[2].FirstName}");
+}
+void Test2()
+{
+
 }

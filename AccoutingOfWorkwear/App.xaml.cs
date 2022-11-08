@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AccoutingOfWorkwear.Windows;
+using AoW.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,13 @@ namespace AccoutingOfWorkwear
     /// </summary>
     public partial class App : Application
     {
+        protected override async void OnStartup(StartupEventArgs e)
+        {
+            
+            Window window = new MainWindow();
+            window.DataContext = new MainViewModel();
+            window.Show();
+            base.OnStartup(e);
+        }
     }
 }
