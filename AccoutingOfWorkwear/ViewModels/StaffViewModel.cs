@@ -1,25 +1,23 @@
 ﻿using AoW.EntityFramework.Date;
 using AoW.EntityFramework.Models;
 using AoW.WPF.Views;
-using Microsoft.EntityFrameworkCore;
+using MVVM.ViewModel;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 
 namespace AoW.WPF.ViewModels
 {
-    internal class StaffViewModel : Base.TableViewModel<Staff>
+    public class StaffViewModel : ViewModel
     {
-        public StaffViewModel()// : base()
+        public StaffViewModel()
         {
-            LoadAsync();
+            //LoadAsync();
         }
 
         
 
-        #region загрузка данных 
+        /*#region загрузка данных 
         
 
         protected override void SetList(AowDbContext dbContext)
@@ -45,7 +43,7 @@ namespace AoW.WPF.ViewModels
                 return new List<Staff>(dbContext.Staff);
             }
         }
-        #endregion
+        #endregion*/
 
 
     }

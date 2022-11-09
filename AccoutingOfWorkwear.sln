@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoW.EntityFramework", "AoW.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVM", "..\MVVM\MVVM.csproj", "{FFE625E8-6E74-4F34-B85D-875BE1A93E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{CD06028B-1973-4713-B7A0-E64B0A6A69EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{CD06028B-1973-4713-B7A0-E64B0A6A69EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigation", "Navigation\Navigation.csproj", "{4016545F-8597-4117-85BB-7044CBC6438E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CD06028B-1973-4713-B7A0-E64B0A6A69EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD06028B-1973-4713-B7A0-E64B0A6A69EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD06028B-1973-4713-B7A0-E64B0A6A69EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4016545F-8597-4117-85BB-7044CBC6438E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4016545F-8597-4117-85BB-7044CBC6438E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4016545F-8597-4117-85BB-7044CBC6438E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4016545F-8597-4117-85BB-7044CBC6438E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

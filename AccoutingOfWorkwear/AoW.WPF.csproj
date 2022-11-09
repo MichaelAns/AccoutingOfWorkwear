@@ -10,6 +10,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\MVVM\MVVM.csproj" />
     <ProjectReference Include="..\AoW.EntityFramework\AoW.EntityFramework.csproj" />
+    <ProjectReference Include="..\Navigation\Navigation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Commands\" />
   </ItemGroup>
 
 </Project>

@@ -1,24 +1,27 @@
-﻿using AoW.WPF.Infrastructure.Enums;
-using AoW.WPF.Infrastructure.Navigators;
-using AoW.WPF.ViewModels;
-using MVVM.Commands;
+﻿using MVVM.Commands;
+using Navigation.Factory;
+using Navigation.Navigators;
 
-namespace AoW.WPF.Infrastructure.Commands
+namespace Navigation.Commands
 {
-    internal class UpdateCurrentViewModelCommand : Command
+    public class UpdateCurrentViewModelCommand : Command
     {
         private INavigator _navigator;
+        private IViewModelFactory _viewModelFactory;
 
-        public UpdateCurrentViewModelCommand(INavigator navigator)
+        public UpdateCurrentViewModelCommand(INavigator navigator, IViewModelFactory viewModelFactory)
         {
             _navigator = navigator;
+            _viewModelFactory = viewModelFactory;
         }
+
 
         public override bool CanExecute(object? parameter) => true;
 
         public override void Execute(object? parameter)
         {
-            if (parameter is ViewType)
+            _navigator.CurrentViewModel = _viewModelFactory.GetViewModel(parameter);
+            /*if (parameter is ViewType)
             {
                 var viewType = (ViewType)parameter;
                 switch(viewType)
@@ -38,7 +41,7 @@ namespace AoW.WPF.Infrastructure.Commands
                     default:
                         break;
                 }
-            }
+            }*/
         }
     }
 }
