@@ -3,9 +3,6 @@
     internal enum ViewType
     {
         Staff,
-        Provider,
-        Workwear,
-        ReceiptInfo,
-        ExtraditionInfo
+        Workwear
     }
 }

@@ -18,30 +18,6 @@ namespace Navigation.Commands
 
         public override bool CanExecute(object? parameter) => true;
 
-        public override void Execute(object? parameter)
-        {
-            _navigator.CurrentViewModel = _viewModelFactory.GetViewModel(parameter);
-            /*if (parameter is ViewType)
-            {
-                var viewType = (ViewType)parameter;
-                switch(viewType)
-                {
-                    case ViewType.Staff:
-                        _navigator.CurrentViewModel = new StaffViewModel();
-                        break;
-                    case ViewType.ReceiptInfo:
-                        break;
-                    case ViewType.Provider:
-                        break;
-                    case ViewType.Workwear:
-                        break;
-                    case ViewType.ExtraditionInfo:
-                        break;
-
-                    default:
-                        break;
-                }
-            }*/
-        }
+        public override void Execute(object? parameter) => _navigator.CurrentViewModel = _viewModelFactory.GetViewModel(parameter);
     }
 }
