@@ -11,8 +11,8 @@ namespace AoW.WPF.ViewModels
 
         public WorkwearViewModel()
         {
-            //UpdateCurrentViewModelCommand = new RelayCommand((obj) => MainViewModel.Navigator.CurrentViewModel = new StaffViewModel(), (obj) => true);
-            MainViewModel.Navigator.CurrentViewModel = new StaffViewModel();
+            UpdateCurrentViewModelCommand = new RelayCommand((obj) => MainViewModel.Navigator.CurrentViewModel = new StaffViewModel(), (obj) => true);
+            
         }
     }
 }

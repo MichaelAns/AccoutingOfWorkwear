@@ -9,6 +9,8 @@ namespace Navigation.Commands
         private INavigator _navigator;
         private IViewModelFactory _viewModelFactory;
 
+        public event EventHandler? CanExecuteChanged;
+
         public UpdateCurrentViewModelCommand(INavigator navigator, IViewModelFactory viewModelFactory)
         {
             _navigator = navigator;

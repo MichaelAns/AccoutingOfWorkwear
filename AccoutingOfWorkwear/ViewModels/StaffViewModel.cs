@@ -17,14 +17,14 @@ namespace AoW.WPF.ViewModels
         public StaffViewModel()
         {
             LoadAsync();
-            UpdateCurrentViewModelCommand = new RelayCommand((obj) => MainViewModel.Navigator.CurrentViewModel = new WorkwearViewModel(), (obj) => true);
+            UpdateCurrentViewModelCommand = new RelayCommand(fikalis, (obj) => true);
         }
 
         public List<Staff> Staff { get => _staff; set => Set(ref _staff, value); }
         public Staff SelectedItem { get => _selectedItem; set => Set(ref _selectedItem, value); }
 
         #region загрузка данных       
-        
+
         private async void LoadAsync()
         {
             Get().ContinueWith(async task =>
@@ -46,6 +46,13 @@ namespace AoW.WPF.ViewModels
 
         //public ICommand UpdateCurrentViewModelCommand => MainViewModel.Navigator.UpdateCurrentViewModelCommand;
         public ICommand UpdateCurrentViewModelCommand { get; set; }
+
+        void fikalis(object obj)
+        {
+            Fikalis = "PIDORAS!";
+        }
+        string _fikalis = "FIKALIS";
+        public string Fikalis { get => _fikalis; set => Set(ref _fikalis, value); }
 
 
     }
