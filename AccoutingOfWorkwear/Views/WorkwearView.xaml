@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"             
              xmlns:local="clr-namespace:AoW.WPF.Views"
-             xmlns:controls ="clr-namespace:AoW.WPF.Controls"
+             xmlns:enum="clr-namespace:AoW.WPF.Infrastructure.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="900">
     <Grid>
@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" 
+        <TextBlock Grid.Row="0" 
                  Text="Выбор спецодежды" 
                  TextAlignment="Center" 
                  FontSize="30"/>
@@ -54,7 +54,8 @@
             <Button Grid.Column="0" 
                 Content="Отмена"                
                 FontSize="28"
-                Margin="10"/>
+                Margin="10"
+                Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static enum:ViewType.Staff}"/>
             <Button Grid.Column="1" 
                 Content="Выдать спецодежду"                
                 FontSize="28"

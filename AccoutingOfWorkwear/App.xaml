@@ -14,6 +14,9 @@
             <DataTemplate DataType="{x:Type viewmodels:StaffViewModel}">
                 <views:StaffView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:WorkwearViewModel}">
+                <views:WorkwearView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

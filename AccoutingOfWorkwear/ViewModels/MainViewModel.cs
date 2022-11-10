@@ -6,6 +6,7 @@ namespace AoW.WPF.ViewModels
 {
     internal class MainViewModel : ViewModel
     {
-        public INavigator Navigator { get; set; } = new Navigator(new StaffViewModel(), new AowViewModelFactory());
+        public static INavigator Navigator { get; set; } = new Navigator(new WorkwearViewModel(), new AowViewModelFactory());
+        
     }
 }

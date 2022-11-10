@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AoW.WPF.Views"
-             xmlns:controls ="clr-namespace:AoW.WPF.Controls"
+             xmlns:vm ="clr-namespace:AoW.WPF.ViewModels"
+             xmlns:enum="clr-namespace:AoW.WPF.Infrastructure.Enums"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="900">
     <Grid>
@@ -13,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" 
+        <TextBlock Grid.Row="0" 
                  Text="Выбор рабочего" 
                  TextAlignment="Center" 
                  FontSize="30"/>
@@ -23,14 +24,19 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <ListBox>
+                <ListBox ItemsSource="{Binding Staff}"
+                         SelectedItem="{Binding SelectedItem}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="5">
-                                <TextBlock Text="ФИО" 
-                                           FontFamily="24"/>
-                                <TextBlock Text="Год рождения"/>
-                                <TextBlock Text="Должность"/>
+                                <TextBlock Text="{Binding SecondName}" 
+                                           FontSize="24"/>
+                                <TextBlock Text="{Binding FirstName}" 
+                                           FontSize="24"/>
+                                <TextBlock Text="{Binding LastName}" 
+                                           FontSize="24"/>
+                                <TextBlock Text="{Binding Profession}"/>
+                                <TextBlock Text="{Binding Post}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -49,6 +55,7 @@
         </Grid>
         <Button Content="Выдать спецодежду" 
                 Grid.Row="2" 
-                FontSize="30"/>
+                FontSize="30"
+                Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static enum:ViewType.Workwear}"/>
     </Grid>
 </UserControl>

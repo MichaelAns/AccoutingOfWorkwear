@@ -1,10 +1,12 @@
 ﻿using AoW.EntityFramework.Date;
 using AoW.EntityFramework.Models;
 using AoW.WPF.Views;
+using MVVM.Commands;
 using MVVM.ViewModel;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AoW.WPF.ViewModels
 {
@@ -15,6 +17,7 @@ namespace AoW.WPF.ViewModels
         public StaffViewModel()
         {
             LoadAsync();
+            UpdateCurrentViewModelCommand = new RelayCommand((obj) => MainViewModel.Navigator.CurrentViewModel = new WorkwearViewModel(), (obj) => true);
         }
 
         public List<Staff> Staff { get => _staff; set => Set(ref _staff, value); }
@@ -40,6 +43,9 @@ namespace AoW.WPF.ViewModels
             }
         }
         #endregion
+
+        //public ICommand UpdateCurrentViewModelCommand => MainViewModel.Navigator.UpdateCurrentViewModelCommand;
+        public ICommand UpdateCurrentViewModelCommand { get; set; }
 
 
     }

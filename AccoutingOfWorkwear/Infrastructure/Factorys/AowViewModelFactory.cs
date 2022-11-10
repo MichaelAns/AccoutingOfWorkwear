@@ -17,10 +17,10 @@ namespace AoW.WPF.Infrastructure.Factorys
                 {
                     case ViewType.Staff:
                         return new StaffViewModel();
-                        break;
+                    case ViewType.Workwear:
+                        return new WorkwearViewModel();
                     default:
                         throw new Exception();
-                        break;
                 }
             }
             else
