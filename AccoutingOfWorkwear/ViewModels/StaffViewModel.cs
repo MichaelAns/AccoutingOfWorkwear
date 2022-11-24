@@ -16,12 +16,22 @@ namespace AoW.WPF.ViewModels
         private Staff _selectedItem;
         public StaffViewModel()
         {
-            LoadAsync();
+            //LoadAsync();
             UpdateCurrentViewModelCommand = new RelayCommand(fikalis, (obj) => true);
+
         }
 
-        public List<Staff> Staff { get => _staff; set => Set(ref _staff, value); }
-        public Staff SelectedItem { get => _selectedItem; set => Set(ref _selectedItem, value); }
+        public List<Staff> Staff
+        {
+            get => _staff;
+            set => Set(ref _staff, value);
+        }
+
+        public Staff SelectedItem 
+        { 
+            get => _selectedItem;
+            set => Set(ref _selectedItem, value);
+        }
 
         #region загрузка данных       
 
@@ -45,14 +55,18 @@ namespace AoW.WPF.ViewModels
         #endregion
 
         //public ICommand UpdateCurrentViewModelCommand => MainViewModel.Navigator.UpdateCurrentViewModelCommand;
-        public ICommand UpdateCurrentViewModelCommand { get; set; }
+        public ICommand UpdateCurrentViewModelCommand { get; }
 
         void fikalis(object obj)
         {
-            Fikalis = "PIDORAS!";
+            Fikalis = "OOO Megalul";
         }
         string _fikalis = "FIKALIS";
-        public string Fikalis { get => _fikalis; set => Set(ref _fikalis, value); }
+        public string Fikalis 
+        { 
+            get => _fikalis; 
+            set => Set(ref _fikalis, value); 
+        }
 
 
     }

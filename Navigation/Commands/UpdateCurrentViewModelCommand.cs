@@ -1,5 +1,4 @@
-﻿using MVVM.Commands;
-using Navigation.Factory;
+﻿using Navigation.Factory;
 using Navigation.Navigators;
 
 namespace Navigation.Commands
@@ -8,8 +7,6 @@ namespace Navigation.Commands
     {
         private INavigator _navigator;
         private IViewModelFactory _viewModelFactory;
-
-        public event EventHandler? CanExecuteChanged;
 
         public UpdateCurrentViewModelCommand(INavigator navigator, IViewModelFactory viewModelFactory)
         {

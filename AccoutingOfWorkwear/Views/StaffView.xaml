@@ -44,7 +44,7 @@
             </Grid>
             <Grid Grid.Column="1">
                 <StackPanel HorizontalAlignment="Center" Margin="100">
-                    <TextBlock Text="{Binding Fikalis}"/>
+                    <TextBlock Text="{Binding Fikalis, UpdateSourceTrigger=Default}"/>
                     <TextBlock Text="Имя"/>
                     <TextBlock Text="Отчество"/>
                     <TextBlock Text="Специальность"/>
