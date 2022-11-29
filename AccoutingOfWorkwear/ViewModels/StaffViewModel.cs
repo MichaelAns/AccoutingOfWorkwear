@@ -65,8 +65,7 @@ namespace AoW.WPF.ViewModels
             }
         }
         #endregion
-
-        //public ICommand UpdateCurrentViewModelCommand => MainViewModel.Navigator.UpdateCurrentViewModelCommand;
+                
         public ICommand UpdateCurrentViewModelCommand => MainViewModel.Navigator.UpdateCurrentViewModelCommand;
 
 
