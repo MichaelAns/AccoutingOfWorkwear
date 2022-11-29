@@ -16,7 +16,6 @@ namespace AoW.WPF.ViewModels
                 return dbContext.Staff.ToList();
             }
         }
-
         
     }
 }
