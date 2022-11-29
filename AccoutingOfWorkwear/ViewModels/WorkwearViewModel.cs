@@ -29,14 +29,24 @@ namespace AoW.WPF.ViewModels
         private readonly Staff _staff;
 
         /// <summary>
-        /// Информация о спецодежде
+        /// Закончившаяся спецодежда
         /// </summary>
-        private List<WorkWear> _workwear;
+        #region Закончившаяся спецодежда
+        private List<ReceiptInfo> _finishedWorkwear;
 
-        /// <summary>
-        /// Информация о производителях
-        /// </summary>
-        private List<Provider> _providers;
+        public List<ReceiptInfo> FinishedWorkwear
+        {
+            get => _finishedWorkwear;
+            set => Set(ref _finishedWorkwear, value);
+        }
+
+        private ReceiptInfo _finishedSelectedItem;
+        public  ReceiptInfo FinishedSelectedItem
+        {
+            get => _finishedSelectedItem;
+            set => Set(ref _finishedSelectedItem, _finishedSelectedItem = value);
+        }
+        #endregion
 
         #region Отмена выдачи одежды
 
@@ -50,18 +60,18 @@ namespace AoW.WPF.ViewModels
         #endregion
 
 
-        #region Загрузка данных
-
+        
 
 
         protected override async Task<ICollection> Get()
         {
+            var items = new List<ReceiptInfo>();
             using (var dbContext = new AowDbContextFactory().CreateDbContext())
             {
-                return dbContext.ReceiptInfo.Include(w => w.Workwear).Include(p => p.Provider).ToList();
+                items = dbContext.ReceiptInfo.Include(w => w.Workwear).Include(p => p.Provider).ToList();
             }
+            _finishedWorkwear = items.Where(r => r.Remains < 0).ToList();
+            return items.Where(r => r.Remains > 0).ToList();
         }
-
-        #endregion
     }
 }

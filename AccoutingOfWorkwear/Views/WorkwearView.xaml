@@ -48,7 +48,7 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </Grid>
-                        <Grid Grid.Column="1" HorizontalAlignment="Center">
+                        <Grid Grid.Column="1">
                             <StackPanel HorizontalAlignment="Center" 
                                         Margin="50"
                                         DataContext="{Binding SelectedItem}">
@@ -95,25 +95,44 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <ListBox>
+                        <ListBox ItemsSource="{Binding FinishedWorkwear}"
+                                     SelectedItem="{Binding FinishedSelectedItem, Mode=TwoWay}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Margin="5">
-                                        <TextBlock Text="Название" 
-                                           FontFamily="24"/>
-                                        <TextBlock Text="Тип"/>
+                                        <TextBlock DataContext="{Binding Workwear}" 
+                                                       Text="{Binding Name}"
+                                                       FontSize="24"/>
+                                        <TextBlock DataContext="{Binding Workwear}"
+                                                       Text="{Binding Type}"/>
+                                        <TextBlock DataContext="{Binding Provider}" 
+                                                       Text="{Binding Name}"/>
+                                        <TextBlock Text="{Binding Remains}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <StackPanel HorizontalAlignment="Center" Margin="100">
-                            <TextBlock Text="Называние"/>
-                            <TextBlock Text="Тип"/>
-                            <TextBlock Text="Стоимость"/>
-                            <TextBlock Text="Количество"/>
+                        <StackPanel HorizontalAlignment="Center" 
+                                        Margin="50"
+                                        DataContext="{Binding FinishedSelectedItem}">
+                            <TextBlock Text="Название"/>
+                            <TextBlock DataContext="{Binding Workwear}" 
+                                           Text="{Binding Name}"/>
                             <TextBlock Text="Поставщик"/>
+                            <TextBlock DataContext="{Binding Provider}" 
+                                           Text="{Binding Name}"/>
+                            <TextBlock Text="Тип"/>
+                            <TextBlock DataContext="{Binding Workwear}"
+                                           Text="{Binding Type}"/>
+                            <TextBlock Text="Стоимость"/>
+                            <TextBlock DataContext="{Binding Workwear}" 
+                                           Text="{Binding Price}"/>
+                            <TextBlock Text="Количество"/>
+                            <TextBlock Text="{Binding Count}"/>
+                            <TextBlock Text="Остаток"/>
+                            <TextBlock Text="{Binding Remains}"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
