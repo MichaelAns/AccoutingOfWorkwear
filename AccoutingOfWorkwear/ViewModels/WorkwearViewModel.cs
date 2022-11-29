@@ -1,16 +1,21 @@
-﻿using MyMVVM.Navigation.Navigators;
+﻿using AoW.EntityFramework.Date;
+using AoW.EntityFramework.Models;
+using AoW.WPF.ViewModels.Base;
 using MyMVVM.ViewModelBase;
-using System.Windows.Input;
+using System.Collections;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AoW.WPF.ViewModels
 {
-    internal class WorkwearViewModel : ViewModel
+    internal class WorkwearViewModel : BaseEntityViewModel<WorkWear>
     {
-        public ICommand UpdateCurrentViewModelCommand => MainViewModel.Navigator.UpdateCurrentViewModelCommand;
-
-        public WorkwearViewModel()
+        protected override async Task<ICollection> Get()
         {
-                        
+            using (var dbContext = new AowDbContextFactory().CreateDbContext())
+            {
+                return dbContext.WorkWear.ToList();
+            }
         }
     }
 }
