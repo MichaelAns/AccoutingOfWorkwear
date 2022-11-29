@@ -1,8 +1,8 @@
 ﻿using AoW.EntityFramework.Date;
 using AoW.EntityFramework.Models;
 using AoW.WPF.Views;
-using MVVM.Commands;
-using MVVM.ViewModel;
+using MyMVVM.Commands;
+using MyMVVM.ViewModelBase;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,17 +16,21 @@ namespace AoW.WPF.ViewModels
         private Staff _selectedItem;
         public StaffViewModel()
         {
-            //LoadAsync();
-            UpdateCurrentViewModelCommand = new RelayCommand(fikalis, (obj) => true);
-
+            LoadAsync();
         }
 
+        /// <summary>
+        /// Список сотрудников
+        /// </summary>
         public List<Staff> Staff
         {
             get => _staff;
             set => Set(ref _staff, value);
         }
 
+        /// <summary>
+        /// Выделенный сотрудник
+        /// </summary>
         public Staff SelectedItem 
         { 
             get => _selectedItem;
@@ -35,6 +39,9 @@ namespace AoW.WPF.ViewModels
 
         #region загрузка данных       
 
+        /// <summary>
+        /// Асинхронная загрузка данных из базы данных
+        /// </summary>
         private async void LoadAsync()
         {
             Get().ContinueWith(async task =>
@@ -45,6 +52,11 @@ namespace AoW.WPF.ViewModels
                 }
             });
         }
+
+        /// <summary>
+        /// Получение списка сотрудников из базы
+        /// </summary>
+        /// <returns>Список сотрудников</returns>
         private async Task<ICollection> Get()
         {
             using (var dbContext = new AowDbContextFactory().CreateDbContext())
@@ -55,18 +67,7 @@ namespace AoW.WPF.ViewModels
         #endregion
 
         //public ICommand UpdateCurrentViewModelCommand => MainViewModel.Navigator.UpdateCurrentViewModelCommand;
-        public ICommand UpdateCurrentViewModelCommand { get; }
-
-        void fikalis(object obj)
-        {
-            Fikalis = "OOO Megalul";
-        }
-        string _fikalis = "FIKALIS";
-        public string Fikalis 
-        { 
-            get => _fikalis; 
-            set => Set(ref _fikalis, value); 
-        }
+        public ICommand UpdateCurrentViewModelCommand => MainViewModel.Navigator.UpdateCurrentViewModelCommand;
 
 
     }

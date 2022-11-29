@@ -1,7 +1,7 @@
 ﻿using AoW.WPF.Infrastructure.Enums;
 using AoW.WPF.ViewModels;
-using MVVM.ViewModel;
-using Navigation.Factory;
+using MyMVVM.Navigation.Factory;
+using MyMVVM.ViewModelBase;
 using System;
 
 namespace AoW.WPF.Infrastructure.Factorys
