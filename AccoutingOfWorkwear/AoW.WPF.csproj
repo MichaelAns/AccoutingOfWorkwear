@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MVVM\MVVM.csproj" />
     <ProjectReference Include="..\AoW.EntityFramework\AoW.EntityFramework.csproj" />
   </ItemGroup>
 
