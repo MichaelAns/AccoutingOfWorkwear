@@ -44,7 +44,7 @@
             </Grid>
             <Grid Grid.Column="1">
                 <StackPanel HorizontalAlignment="Center" Margin="100">
-                    <TextBlock Text="{Binding Fikalis, UpdateSourceTrigger=Default}"/>
+                    <TextBlock Text="Фамилия"/>
                     <TextBlock Text="Имя"/>
                     <TextBlock Text="Отчество"/>
                     <TextBlock Text="Специальность"/>
@@ -56,6 +56,7 @@
         <Button Content="Выдать спецодежду" 
                 Grid.Row="2" 
                 FontSize="30"
+                Margin="10"
                 Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static enum:ViewType.Workwear}"/>
     </Grid>
 </UserControl>

@@ -1,5 +1,4 @@
-﻿using MVVM.Commands;
-using MVVM.ViewModel;
+﻿using MyMVVM.ViewModelBase;
 using System.Windows.Input;
 
 namespace AoW.WPF.ViewModels

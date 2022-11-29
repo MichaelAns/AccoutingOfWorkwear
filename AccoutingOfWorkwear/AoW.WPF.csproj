@@ -8,13 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MVVM\MVVM.csproj" />
-    <ProjectReference Include="..\AoW.EntityFramework\AoW.EntityFramework.csproj" />
-    <ProjectReference Include="..\Navigation\Navigation.csproj" />
+    <Compile Remove="Infrastructure\Commands\**" />
+    <EmbeddedResource Remove="Infrastructure\Commands\**" />
+    <None Remove="Infrastructure\Commands\**" />
+    <Page Remove="Infrastructure\Commands\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Commands\" />
+    <ProjectReference Include="..\..\MVVM\MVVM.csproj" />
+    <ProjectReference Include="..\AoW.EntityFramework\AoW.EntityFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MyMVVM">
+      <HintPath>..\..\MyMVVM\MyMVVM\bin\Release\net6.0-windows\MyMVVM.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
