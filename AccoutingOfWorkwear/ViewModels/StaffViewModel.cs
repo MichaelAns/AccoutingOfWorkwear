@@ -24,7 +24,7 @@ namespace AoW.WPF.ViewModels
             {
                 return dbContext.Staff.ToList();
             }
-        }
+        } 
         
         #region Выбор одежды
 
