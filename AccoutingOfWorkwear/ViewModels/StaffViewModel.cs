@@ -16,8 +16,6 @@ namespace AoW.WPF.ViewModels
             SelectWorkwearCommand = new RelayCommand(SelectWorkwearExecute, SelectWorkwearCanExecute);
         }
 
-
-
         protected override async Task<ICollection> Get()
         {
             using (var dbContext = new AowDbContextFactory().CreateDbContext())
