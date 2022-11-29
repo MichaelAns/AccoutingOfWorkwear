@@ -1,14 +1,9 @@
 ﻿using AoW.EntityFramework.Date;
 using AoW.EntityFramework.Models;
 using AoW.WPF.ViewModels.Base;
-using AoW.WPF.Views;
-using MyMVVM.Commands;
-using MyMVVM.ViewModelBase;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace AoW.WPF.ViewModels
 {

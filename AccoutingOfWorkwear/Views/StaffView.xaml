@@ -44,12 +44,13 @@
             </Grid>
             <Grid Grid.Column="1">
                 <StackPanel HorizontalAlignment="Center" 
-                            Margin="100">
-                    <TextBlock Text="Фамилия"/>
-                    <TextBlock Text="Имя"/>
-                    <TextBlock Text="Отчество"/>
-                    <TextBlock Text="Специальность"/>
-                    <TextBlock Text="Должность"/>
+                            Margin="100"
+                            DataContext="{Binding SelectedItem}">
+                    <TextBlock Text="{Binding SecondName}"/>
+                    <TextBlock Text="{Binding FirstName}" />
+                    <TextBlock Text="{Binding LastName}"/>
+                    <TextBlock Text="{Binding Profession}"/>
+                    <TextBlock Text="{Binding Post}"/>
                 </StackPanel>
             </Grid>
         </Grid>
