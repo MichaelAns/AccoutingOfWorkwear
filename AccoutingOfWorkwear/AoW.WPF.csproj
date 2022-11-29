@@ -16,13 +16,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\MVVM\MVVM.csproj" />
+    <ProjectReference Include="..\..\MVVM\MVVM.csproj" />
     <ProjectReference Include="..\AoW.EntityFramework\AoW.EntityFramework.csproj" />
+    <ProjectReference Include="..\Navigation\Navigation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="MyMVVM">
-      <HintPath>..\..\MyMVVM\MyMVVM\bin\Release\net6.0-windows\MyMVVM.dll</HintPath>
-    </Reference>
+    <Folder Include="Infrastructure\Commands\" />
   </ItemGroup>
 
 </Project>
