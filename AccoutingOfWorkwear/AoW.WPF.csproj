@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Infrastructure\Commands\**" />
+    <EmbeddedResource Remove="Infrastructure\Commands\**" />
+    <None Remove="Infrastructure\Commands\**" />
+    <Page Remove="Infrastructure\Commands\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MVVM\MVVM.csproj" />
     <ProjectReference Include="..\..\MVVM\MVVM.csproj" />
     <ProjectReference Include="..\AoW.EntityFramework\AoW.EntityFramework.csproj" />
     <ProjectReference Include="..\Navigation\Navigation.csproj" />
