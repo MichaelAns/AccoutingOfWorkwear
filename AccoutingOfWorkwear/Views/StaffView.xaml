@@ -24,7 +24,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <ListBox ItemsSource="{Binding Staff}"
+                <ListBox ItemsSource="{Binding Items}"
                          SelectedItem="{Binding SelectedItem}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -43,7 +43,8 @@
                 </ListBox>
             </Grid>
             <Grid Grid.Column="1">
-                <StackPanel HorizontalAlignment="Center" Margin="100">
+                <StackPanel HorizontalAlignment="Center" 
+                            Margin="100">
                     <TextBlock Text="Фамилия"/>
                     <TextBlock Text="Имя"/>
                     <TextBlock Text="Отчество"/>
@@ -51,7 +52,6 @@
                     <TextBlock Text="Должность"/>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Column="1"></Grid>
         </Grid>
         <Button Content="Выдать спецодежду" 
                 Grid.Row="2" 
