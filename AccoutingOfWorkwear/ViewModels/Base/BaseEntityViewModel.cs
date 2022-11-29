@@ -37,7 +37,7 @@ namespace AoW.WPF.ViewModels.Base
         }
 
         /// <summary>
-        /// Асинхронная загрузка данных из БД
+        /// Асинхронная загрузка данных
         /// </summary>
         private async void LoadAsync()
         {
@@ -51,14 +51,10 @@ namespace AoW.WPF.ViewModels.Base
         }
 
         /// <summary>
-        /// Способ получения данных из БД
+        /// Получение данных из БД
         /// </summary>
         /// <returns></returns>
         protected abstract Task<ICollection> Get();
 
-        /// <summary>
-        /// Команда переключения модели представления
-        /// </summary>
-        public ICommand UpdateCurrentViewModelCommand => MainViewModel.Navigator.UpdateCurrentViewModelCommand;
     }
 }

@@ -32,7 +32,6 @@ namespace AoW.WPF.ViewModels
         /// </summary>
         private List<ExtraditionInfo> _extraditionInfo;
 
-
         #region Отмена выдачи одежды
 
         public ICommand CancelCommand { get; }

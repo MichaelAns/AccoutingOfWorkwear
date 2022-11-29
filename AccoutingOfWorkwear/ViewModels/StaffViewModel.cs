@@ -16,6 +16,8 @@ namespace AoW.WPF.ViewModels
             SelectWorkwearCommand = new RelayCommand(SelectWorkwearExecute, SelectWorkwearCanExecute);
         }
 
+
+
         protected override async Task<ICollection> Get()
         {
             using (var dbContext = new AowDbContextFactory().CreateDbContext())
@@ -32,7 +34,7 @@ namespace AoW.WPF.ViewModels
         // метод
         private void SelectWorkwearExecute(object obj)
         {
-            MainViewModel.Navigator.CurrentViewModel = new WorkwearViewModel(this);
+            MainViewModel.Navigator.CurrentViewModel = new WorkwearViewModel(this, SelectedItem);
         }
 
         // проверка
