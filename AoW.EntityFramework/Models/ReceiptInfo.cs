@@ -8,6 +8,6 @@ namespace AoW.EntityFramework.Models
         public int Remains { get; set; }
         public DateOnly Date { get; set; }
         public virtual Provider Provider { get; set; }
-        public virtual WorkWear WorkWear { get; set; }
+        public virtual WorkWear Workwear { get; set; }
     }
 }

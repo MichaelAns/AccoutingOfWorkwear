@@ -1,6 +1,7 @@
 ﻿using AoW.EntityFramework.Date;
 using AoW.EntityFramework.Models;
 using AoW.WPF.ViewModels.Base;
+using Microsoft.EntityFrameworkCore;
 using MyMVVM.Commands;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Windows.Input;
 
 namespace AoW.WPF.ViewModels
 {
-    internal class WorkwearViewModel : BaseEntityViewModel<WorkWear>
+    internal class WorkwearViewModel : BaseEntityViewModel<ReceiptInfo>
     {
         public WorkwearViewModel(StaffViewModel staffViewModel, Staff staff)
         {
@@ -28,9 +29,14 @@ namespace AoW.WPF.ViewModels
         private readonly Staff _staff;
 
         /// <summary>
-        /// Информация о поставках
+        /// Информация о спецодежде
         /// </summary>
-        private List<ExtraditionInfo> _extraditionInfo;
+        private List<WorkWear> _workwear;
+
+        /// <summary>
+        /// Информация о производителях
+        /// </summary>
+        private List<Provider> _providers;
 
         #region Отмена выдачи одежды
 
@@ -43,12 +49,19 @@ namespace AoW.WPF.ViewModels
 
         #endregion
 
+
+        #region Загрузка данных
+
+
+
         protected override async Task<ICollection> Get()
         {
             using (var dbContext = new AowDbContextFactory().CreateDbContext())
             {
-                return dbContext.WorkWear.ToList();
+                return dbContext.ReceiptInfo.Include(w => w.Workwear).Include(p => p.Provider).ToList();
             }
         }
+
+        #endregion
     }
 }

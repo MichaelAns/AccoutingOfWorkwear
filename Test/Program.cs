@@ -2,35 +2,53 @@
 using AoW.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
 
-List<Staff> staff = new();
-staff.Add(new Staff() 
+Staff staff = new()
 {
     FirstName = "Ivan",
     SecondName = "Ivanov",
     LastName = "Ivaniich",
     Post = "Serjant",
     Profession = "Operator"
-});
+};
+
+Provider provider = new()
+{
+    Name = "БТК групп",
+    Country = "Россия",
+    City = "Москва",
+    Street = "Чкаловская",
+    Home = 1,
+    Phone = "849951337"
+};
+
+WorkWear workwear = new()
+{
+    Name = "Комлпект ВКПО",
+    Type = "Костюм",
+    Price = 50000   
+};
+
+ReceiptInfo receiptInfo = new()
+{
+    Provider = provider,
+    Workwear = workwear,
+    Count = 1,
+    Date = new DateOnly(2022, 11, 30),
+    Remains = 1
+};
 
 
 using (var dbContext = new AowDbContextFactory().CreateDbContext())
 {
-    for (int i = 5; i < 105; i++)
-    {
-        dbContext.Staff.Add(new Staff()
-        {
-            Id = i,
-            FirstName = "Ivan",
-            SecondName = "Ivanov",
-            LastName = "Ivaniich",
-            Post = "Serjant",
-            Profession = "Operator"
-        });        
-    }
-dbContext.SaveChanges();
+    /*dbContext.Add(staff);
+    dbContext.Add(provider);
+    dbContext.Add(workwear);
+    dbContext.Add(receiptInfo);    
+    dbContext.SaveChanges();*/
 
-//staff = new(dbContext.Staff);
-Console.WriteLine("Succesfully");
+    Console.WriteLine(dbContext.ReceiptInfo.Include(x => x.Workwear).Include(y => y.Provider).ToList().FirstOrDefault().Provider.Name);
+
+    Console.WriteLine("Succesfully");
 
 }
 
@@ -63,7 +81,7 @@ void Test1()
     Console.WriteLine("////BEGIN WAITING");
     Thread.Sleep(5000);
     Console.WriteLine("////END WAITING");
-    Console.WriteLine($"{staff[0].FirstName}\n{staff[1].FirstName}\n{staff[2].FirstName}");
+    //Console.WriteLine($"{staff[0].FirstName}\n{staff[1].FirstName}\n{staff[2].FirstName}");
 }
 void Test2()
 {

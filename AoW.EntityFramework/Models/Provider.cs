@@ -12,6 +12,5 @@ namespace AoW.EntityFramework.Models
         public string Phone { get; set; }
         public virtual ICollection<ReceiptInfo>? ReceiptInfos { get; set; }
 
-
     }
 }

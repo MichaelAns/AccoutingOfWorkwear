@@ -7,14 +7,14 @@ namespace AoW.EntityFramework.Date
     {
         public AowDbContext(DbContextOptions options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
-        public DbSet<Staff> Staff { get; set; }
-        public DbSet<Provider> Provider { get; set; }
-        public DbSet<WorkWear> WorkWear { get; set; }        
+        public DbSet<Staff> Staff { get; set; }        
+        public DbSet<WorkWear> Workwear { get; set; }        
         public DbSet<ReceiptInfo> ReceiptInfo { get; set; }
         public DbSet<ExtraditionInfo> ExtraditionInfo { get; set; }
+        public DbSet<Provider> Provider { get; set; }
 
     }
 }
