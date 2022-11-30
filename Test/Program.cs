@@ -37,13 +37,30 @@ ReceiptInfo receiptInfo = new()
     Remains = 1
 };
 
+ExtraditionInfo extraditionInfo = new()
+{
+    Date = new DateOnly(2022, 12, 1),
+    Staff = staff,
+    Term = 3,
+    WorkWear = workwear
+};
 
 using (var dbContext = new AowDbContextFactory().CreateDbContext())
 {
-    dbContext.Add(staff);
+    /*dbContext.Add(staff);
     dbContext.Add(provider);
     dbContext.Add(workwear);
-    dbContext.Add(receiptInfo);
+    dbContext.Add(receiptInfo);*/
+
+    ExtraditionInfo _extraditionInfo = new()
+    {
+        Date = new DateOnly(2022, 12, 1),
+        Staff = dbContext.Staff.FirstOrDefault(s => s.FirstName == staff.FirstName),
+        Term = 3,
+        WorkWear = dbContext.Workwear.FirstOrDefault(s => s.Name == workwear.Name)
+    };
+
+    dbContext.Add(_extraditionInfo);
     dbContext.SaveChanges();
 
 

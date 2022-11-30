@@ -103,41 +103,25 @@ namespace AoW.WPF.ViewModels
         /// </summary>
         private async void ExtraditionAsync()
         {
-            // создание новой выдачи
-            var extradition = new ExtraditionInfo()
-            {
-                Date = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day),
-                /*Staff = new()
-                {
-                    Id = _staff.Id,
-                    FirstName = _staff.FirstName,
-                    SecondName = _staff.SecondName,
-                    LastName = _staff.LastName,
-                    Post = _staff.Post,
-                    Profession = _staff.Profession
-                },*/
-                Staff = _staff,
-                Term = _Term,
-                WorkWear = SelectedItem.Workwear
-                /*WorkWear = new()
-                {
-                    Id = SelectedItem.Workwear.Id,
-                    Name = SelectedItem.Workwear.Name,
-                    Price = SelectedItem.Workwear.Price,
-                    Type = SelectedItem.Workwear.Type
-                }*/
-            };
+            
 
             SelectedItem.Remains -= _ExtraditionCount;
 
             using (var dbContext = new AowDbContextFactory().CreateDbContext())
             {
-                //dbContext.ExtraditionInfo.Add(extradition);
+                // создание новой выдачи
+                var extradition = new ExtraditionInfo()
+                {
+                    Date = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day),
+                    Staff = dbContext.Staff.FirstOrDefault(s => s.Id == _staff.Id),
+                    Term = _Term,
+                    WorkWear = dbContext.Workwear.FirstOrDefault(w => w.Id == SelectedItem.Workwear.Id)
+                };
+
+                dbContext.Add(extradition);
 
                 // обновление поставки
-                /*var receipt = dbContext.ReceiptInfo.FirstOrDefault(r => r.Id == SelectedItem.Id);
-                receipt = SelectedItem;*/
-                dbContext.ReceiptInfo.Update(SelectedItem);
+                //dbContext.Update(SelectedItem);
 
                 dbContext.SaveChanges();
             }
