@@ -96,14 +96,14 @@ namespace AoW.EntityFramework.Migrations
                     b.Property<int>("Remains")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("WorkWearId")
+                    b.Property<int>("WorkwearId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProviderId");
 
-                    b.HasIndex("WorkWearId");
+                    b.HasIndex("WorkwearId");
 
                     b.ToTable("ReceiptInfo");
                 });
@@ -157,7 +157,7 @@ namespace AoW.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkWear");
+                    b.ToTable("Workwear");
                 });
 
             modelBuilder.Entity("AoW.EntityFramework.Models.ExtraditionInfo", b =>
@@ -187,15 +187,15 @@ namespace AoW.EntityFramework.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AoW.EntityFramework.Models.WorkWear", "WorkWear")
+                    b.HasOne("AoW.EntityFramework.Models.WorkWear", "Workwear")
                         .WithMany("ReceiptInfos")
-                        .HasForeignKey("WorkWearId")
+                        .HasForeignKey("WorkwearId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Provider");
 
-                    b.Navigation("WorkWear");
+                    b.Navigation("Workwear");
                 });
 
             modelBuilder.Entity("AoW.EntityFramework.Models.Provider", b =>

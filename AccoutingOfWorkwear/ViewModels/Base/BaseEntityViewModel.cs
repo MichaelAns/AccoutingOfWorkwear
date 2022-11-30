@@ -2,6 +2,7 @@
 using MyMVVM.ViewModelBase;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -39,10 +40,11 @@ namespace AoW.WPF.ViewModels.Base
         /// <summary>
         /// Асинхронная загрузка данных
         /// </summary>
-        private async void LoadAsync()
+        private void LoadAsync()
         {
             Get().ContinueWith(async task =>
             {
+                //Thread.Sleep(3000);
                 if (task.Exception == null)
                 {
                     Items = (List<Model>)task.Result;

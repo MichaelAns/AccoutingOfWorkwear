@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AoW.EntityFramework.Migrations
 {
     [DbContext(typeof(AowDbContext))]
-    [Migration("20221007101223_init")]
+    [Migration("20221130212645_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,20 +28,20 @@ namespace AoW.EntityFramework.Migrations
                     b.Property<DateOnly>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("StaffID")
+                    b.Property<int>("StaffId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Term")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("WorkWearID")
+                    b.Property<int>("WorkWearId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StaffID");
+                    b.HasIndex("StaffId");
 
-                    b.HasIndex("WorkWearID");
+                    b.HasIndex("WorkWearId");
 
                     b.ToTable("ExtraditionInfo");
                 });
@@ -92,17 +92,20 @@ namespace AoW.EntityFramework.Migrations
                     b.Property<DateOnly>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ProviderID")
+                    b.Property<int>("ProviderId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("WorkWearID")
+                    b.Property<int>("Remains")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("WorkwearId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProviderID");
+                    b.HasIndex("ProviderId");
 
-                    b.HasIndex("WorkWearID");
+                    b.HasIndex("WorkwearId");
 
                     b.ToTable("ReceiptInfo");
                 });
@@ -156,20 +159,20 @@ namespace AoW.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkWear");
+                    b.ToTable("Workwear");
                 });
 
             modelBuilder.Entity("AoW.EntityFramework.Models.ExtraditionInfo", b =>
                 {
                     b.HasOne("AoW.EntityFramework.Models.Staff", "Staff")
                         .WithMany("Extraditions")
-                        .HasForeignKey("StaffID")
+                        .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AoW.EntityFramework.Models.WorkWear", "WorkWear")
                         .WithMany("ExtraditionInfos")
-                        .HasForeignKey("WorkWearID")
+                        .HasForeignKey("WorkWearId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -182,19 +185,19 @@ namespace AoW.EntityFramework.Migrations
                 {
                     b.HasOne("AoW.EntityFramework.Models.Provider", "Provider")
                         .WithMany("ReceiptInfos")
-                        .HasForeignKey("ProviderID")
+                        .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AoW.EntityFramework.Models.WorkWear", "WorkWear")
+                    b.HasOne("AoW.EntityFramework.Models.WorkWear", "Workwear")
                         .WithMany("ReceiptInfos")
-                        .HasForeignKey("WorkWearID")
+                        .HasForeignKey("WorkwearId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Provider");
 
-                    b.Navigation("WorkWear");
+                    b.Navigation("Workwear");
                 });
 
             modelBuilder.Entity("AoW.EntityFramework.Models.Provider", b =>

@@ -4,6 +4,7 @@ using AoW.WPF.ViewModels.Base;
 using MyMVVM.Commands;
 using System.Collections;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -11,7 +12,7 @@ namespace AoW.WPF.ViewModels
 {
     internal class StaffViewModel : BaseEntityViewModel<Staff>
     {
-        public StaffViewModel()
+        public StaffViewModel() : base()
         {
             SelectWorkwearCommand = new RelayCommand(SelectWorkwearExecute, SelectWorkwearCanExecute);
         }

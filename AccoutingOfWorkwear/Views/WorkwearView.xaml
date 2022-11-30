@@ -84,7 +84,8 @@
                         <Button Grid.Column="1"
                                 Content="Выдать спецодежду"                
                                 FontSize="28"
-                                Margin="10"/>
+                                Margin="10"
+                                Command="{Binding ExtraditionCommand}"/>
                     </Grid>
                 </Grid>
             </TabItem>

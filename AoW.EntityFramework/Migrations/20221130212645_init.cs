@@ -45,7 +45,7 @@ namespace AoW.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WorkWear",
+                name: "Workwear",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -56,7 +56,7 @@ namespace AoW.EntityFramework.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WorkWear", x => x.Id);
+                    table.PrimaryKey("PK_Workwear", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,22 +67,22 @@ namespace AoW.EntityFramework.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Date = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     Term = table.Column<int>(type: "INTEGER", nullable: false),
-                    WorkWearID = table.Column<int>(type: "INTEGER", nullable: false),
-                    StaffID = table.Column<int>(type: "INTEGER", nullable: false)
+                    WorkWearId = table.Column<int>(type: "INTEGER", nullable: false),
+                    StaffId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExtraditionInfo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ExtraditionInfo_Staff_StaffID",
-                        column: x => x.StaffID,
+                        name: "FK_ExtraditionInfo_Staff_StaffId",
+                        column: x => x.StaffId,
                         principalTable: "Staff",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ExtraditionInfo_WorkWear_WorkWearID",
-                        column: x => x.WorkWearID,
-                        principalTable: "WorkWear",
+                        name: "FK_ExtraditionInfo_Workwear_WorkWearId",
+                        column: x => x.WorkWearId,
+                        principalTable: "Workwear",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -94,46 +94,47 @@ namespace AoW.EntityFramework.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Count = table.Column<int>(type: "INTEGER", nullable: false),
+                    Remains = table.Column<int>(type: "INTEGER", nullable: false),
                     Date = table.Column<DateOnly>(type: "TEXT", nullable: false),
-                    ProviderID = table.Column<int>(type: "INTEGER", nullable: false),
-                    WorkWearID = table.Column<int>(type: "INTEGER", nullable: false)
+                    ProviderId = table.Column<int>(type: "INTEGER", nullable: false),
+                    WorkwearId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ReceiptInfo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ReceiptInfo_Provider_ProviderID",
-                        column: x => x.ProviderID,
+                        name: "FK_ReceiptInfo_Provider_ProviderId",
+                        column: x => x.ProviderId,
                         principalTable: "Provider",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ReceiptInfo_WorkWear_WorkWearID",
-                        column: x => x.WorkWearID,
-                        principalTable: "WorkWear",
+                        name: "FK_ReceiptInfo_Workwear_WorkwearId",
+                        column: x => x.WorkwearId,
+                        principalTable: "Workwear",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExtraditionInfo_StaffID",
+                name: "IX_ExtraditionInfo_StaffId",
                 table: "ExtraditionInfo",
-                column: "StaffID");
+                column: "StaffId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExtraditionInfo_WorkWearID",
+                name: "IX_ExtraditionInfo_WorkWearId",
                 table: "ExtraditionInfo",
-                column: "WorkWearID");
+                column: "WorkWearId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReceiptInfo_ProviderID",
+                name: "IX_ReceiptInfo_ProviderId",
                 table: "ReceiptInfo",
-                column: "ProviderID");
+                column: "ProviderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReceiptInfo_WorkWearID",
+                name: "IX_ReceiptInfo_WorkwearId",
                 table: "ReceiptInfo",
-                column: "WorkWearID");
+                column: "WorkwearId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -151,7 +152,7 @@ namespace AoW.EntityFramework.Migrations
                 name: "Provider");
 
             migrationBuilder.DropTable(
-                name: "WorkWear");
+                name: "Workwear");
         }
     }
 }

@@ -40,13 +40,13 @@ ReceiptInfo receiptInfo = new()
 
 using (var dbContext = new AowDbContextFactory().CreateDbContext())
 {
-    /*dbContext.Add(staff);
+    dbContext.Add(staff);
     dbContext.Add(provider);
     dbContext.Add(workwear);
-    dbContext.Add(receiptInfo);    
-    dbContext.SaveChanges();*/
+    dbContext.Add(receiptInfo);
+    dbContext.SaveChanges();
 
-    Console.WriteLine(dbContext.ReceiptInfo.Include(x => x.Workwear).Include(y => y.Provider).ToList().FirstOrDefault().Provider.Name);
+
 
     Console.WriteLine("Succesfully");
 
