@@ -58,10 +58,10 @@ namespace AoW.WPF.ViewModels
         }
 
         private ReceiptInfo _finishedSelectedItem;
-        public  ReceiptInfo FinishedSelectedItem
+        public ReceiptInfo FinishedSelectedItem
         {
             get => _finishedSelectedItem;
-            set => Set(ref _finishedSelectedItem, _finishedSelectedItem = value);
+            set => Set(ref _finishedSelectedItem, value);
         }
         #endregion
 
@@ -182,11 +182,8 @@ namespace AoW.WPF.ViewModels
             var items = new List<ReceiptInfo>();
             using (var dbContext = new AowDbContextFactory().CreateDbContext())
             {
-                //items = dbContext.ReceiptInfo.Include(w => w.Workwear).Include(p => p.Provider).ToList();
                 return dbContext.ReceiptInfo.Include(w => w.Workwear).Include(p => p.Provider).ToList();
             }
-            //FinishedWorkwear = items.Where(r => r.Remains < 0).ToList();
-            //return items.Where(r => r.Remains > 0).ToList();
         }
     }
 }

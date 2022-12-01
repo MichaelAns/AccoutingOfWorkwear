@@ -116,8 +116,8 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel HorizontalAlignment="Center" 
-                                        Margin="50"
-                                        DataContext="{Binding FinishedSelectedItem}">
+                                    Margin="50"
+                                    DataContext="{Binding FinishedSelectedItem}">
                             <TextBlock Text="Название"/>
                             <TextBlock DataContext="{Binding Workwear}" 
                                            Text="{Binding Name}"/>
