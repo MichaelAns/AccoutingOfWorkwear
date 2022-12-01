@@ -22,6 +22,7 @@ namespace AoW.WPF.ViewModels
             _staff = staff;
             CancelCommand = new RelayCommand(CancelExecute, (obj) => true);
             ExtraditionCommand = new RelayCommand(ExtraditionExecute, ExtraditionCanExecute);
+            UpdateListsAsync();
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace AoW.WPF.ViewModels
         public ICommand ExtraditionCommand { get; }
 
         /// <summary>
-        /// Выдача одежды
+        /// Действие команды на выдачу одежды
         /// </summary>
         /// <param name="obj"></param>
         private void ExtraditionExecute(object obj)
@@ -103,32 +104,50 @@ namespace AoW.WPF.ViewModels
         /// </summary>
         private async void ExtraditionAsync()
         {
-            
-
-            SelectedItem.Remains -= _ExtraditionCount;
-
-            using (var dbContext = new AowDbContextFactory().CreateDbContext())
+            try
             {
-                // создание новой выдачи
-                var extradition = new ExtraditionInfo()
+                await Task.Run(() =>
                 {
-                    Date = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day),
-                    Staff = dbContext.Staff.FirstOrDefault(s => s.Id == _staff.Id),
-                    Term = _Term,
-                    WorkWear = dbContext.Workwear.FirstOrDefault(w => w.Id == SelectedItem.Workwear.Id)
-                };
+                    SelectedItem.Remains -= _ExtraditionCount;
 
-                dbContext.Add(extradition);
+                    using (var dbContext = new AowDbContextFactory().CreateDbContext())
+                    {
+                        // создание новой выдачи
+                        var extradition = new ExtraditionInfo()
+                        {
+                            Date = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day),
+                            Staff = dbContext.Staff.FirstOrDefault(s => s.Id == _staff.Id),
+                            Term = _Term,
+                            WorkWear = dbContext.Workwear.FirstOrDefault(w => w.Id == SelectedItem.Workwear.Id)
+                        };
 
-                // обновление поставки
-                //dbContext.Update(SelectedItem);
+                        // добавление записи
+                        dbContext.Add(extradition);
 
-                dbContext.SaveChanges();
+                        // обновление поставки
+                        var updatedReceipt = dbContext.ReceiptInfo.FirstOrDefault(e => e.Id == SelectedItem.Id);
+                        updatedReceipt.Remains = SelectedItem.Remains;
+
+                        Thread.Sleep(3000);
+                        dbContext.SaveChanges();
+                    }
+                });
+                MessageBox.Show("Изменения внесены в базу данных!");
             }
-
-            MessageBox.Show("Изменения внесены в базу данных!");
+            catch(NullReferenceException nullRefExc)
+            {
+                MessageBox.Show(nullRefExc.Message);
+            }
+            catch(ArgumentNullException nullExc)
+            {
+                MessageBox.Show(nullExc.Message);
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
-                
+                        
         #endregion
 
         /// <summary>
@@ -139,15 +158,35 @@ namespace AoW.WPF.ViewModels
             MainViewModel.Navigator.CurrentViewModel = _staffViewModel;
         }
 
+        /// <summary>
+        /// Обновление списков закончившееся и обычной одежды
+        /// </summary>
+        private async void UpdateListsAsync()
+        {
+            await Task.Run(() =>
+            {
+                // проверка на получение Items
+                var flag = true;
+                while (flag)
+                {
+                    flag = Items is null ? true: false;
+                }
+
+                FinishedWorkwear = Items.Where(r => r.Remains <= 0).ToList();
+                Items = Items.Where(r => r.Remains > 0).ToList();
+            });
+        }
+
         protected override async Task<ICollection> Get()
         {
             var items = new List<ReceiptInfo>();
             using (var dbContext = new AowDbContextFactory().CreateDbContext())
             {
-                items = dbContext.ReceiptInfo.Include(w => w.Workwear).Include(p => p.Provider).ToList();
+                //items = dbContext.ReceiptInfo.Include(w => w.Workwear).Include(p => p.Provider).ToList();
+                return dbContext.ReceiptInfo.Include(w => w.Workwear).Include(p => p.Provider).ToList();
             }
-            FinishedWorkwear = items.Where(r => r.Remains < 0).ToList();
-            return items.Where(r => r.Remains > 0).ToList();
+            //FinishedWorkwear = items.Where(r => r.Remains < 0).ToList();
+            //return items.Where(r => r.Remains > 0).ToList();
         }
     }
 }

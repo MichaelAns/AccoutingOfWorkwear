@@ -44,7 +44,7 @@ namespace AoW.WPF.ViewModels.Base
         {
             Get().ContinueWith(async task =>
             {
-                //Thread.Sleep(3000);
+                Thread.Sleep(3000);
                 if (task.Exception == null)
                 {
                     Items = (List<Model>)task.Result;

@@ -12,7 +12,7 @@ namespace AoW.WPF.ViewModels
 {
     internal class StaffViewModel : BaseEntityViewModel<Staff>
     {
-        public StaffViewModel() : base()
+        public StaffViewModel()
         {
             SelectWorkwearCommand = new RelayCommand(SelectWorkwearExecute, SelectWorkwearCanExecute);
         }
