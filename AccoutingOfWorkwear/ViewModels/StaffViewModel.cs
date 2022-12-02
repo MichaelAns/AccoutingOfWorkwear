@@ -33,7 +33,7 @@ namespace AoW.WPF.ViewModels
         // метод
         private void SelectWorkwearExecute(object obj)
         {
-            MainViewModel.Navigator.CurrentViewModel = new WorkwearViewModel(this, SelectedItem);
+            //MainViewModel.Navigator.CurrentViewModel = new WorkwearViewModel(this, SelectedItem);
         }
 
         // проверка

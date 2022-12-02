@@ -155,7 +155,7 @@ namespace AoW.WPF.ViewModels
         /// </summary>
         private void BackToStaff()
         {
-            MainViewModel.Navigator.CurrentViewModel = _staffViewModel;
+            //MainViewModel.Navigator.CurrentViewModel = _staffViewModel;
         }
 
         /// <summary>

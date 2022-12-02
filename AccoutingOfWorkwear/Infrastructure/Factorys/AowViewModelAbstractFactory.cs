@@ -6,7 +6,7 @@ using System;
 
 namespace AoW.WPF.Infrastructure.Factorys
 {
-    internal class AowViewModelFactory : IViewModelFactory
+    internal class AowViewModelAbstractFactory : IViewModelAbstractFactory
     {
         public ViewModel GetViewModel(object? parameter)
         {
@@ -23,7 +23,7 @@ namespace AoW.WPF.Infrastructure.Factorys
             }
             else
             {
-                throw new Exception();
+                throw new Exception("parameter is not ViewType");
             }
         }
     }
