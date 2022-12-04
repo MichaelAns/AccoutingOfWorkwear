@@ -6,7 +6,7 @@ using System;
 
 namespace AoW.WPF.Infrastructure.Factorys
 {
-    internal class AowViewModelFactory : IViewModelFactory
+    internal class AowViewModelFactory : IViewModelAbstractFactory
     {
         public ViewModel GetViewModel(object? parameter)
         {

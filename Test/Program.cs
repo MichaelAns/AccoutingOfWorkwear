@@ -2,13 +2,32 @@
 using AoW.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
 
-Staff staff = new()
+List<Staff> staff = new()
 {
-    FirstName = "Ivan",
-    SecondName = "Ivanov",
-    LastName = "Ivaniich",
-    Post = "Serjant",
-    Profession = "Operator"
+    new Staff()
+    {
+        FirstName = "Игорь",
+        SecondName = "Стрелков",
+        LastName = "Иванович",
+        Post = "Командир",
+        Profession = "Наводчик"
+    },
+    new Staff()
+    {
+        FirstName = "Евгений",
+        SecondName = "Пригожин",
+        LastName = "Викторович",
+        Post = "Главный",
+        Profession = "Предприниматель"
+    },
+    new Staff()
+    {
+        FirstName = "Антон",
+        SecondName = "Фикалис",
+        LastName = "Палыч",
+        Post = "Директор",
+        Profession = "Упалнамоченый"
+    }
 };
 
 Provider provider = new()
@@ -27,32 +46,40 @@ WorkWear workwear = new()
     Type = "Костюм",
     Price = 50000   
 };
+WorkWear workwear2 = new()
+{
+    Name = "Комлпект Ратник",
+    Type = "Костюм",
+    Price = 150000
+};
 
 ReceiptInfo receiptInfo = new()
 {
     Provider = provider,
     Workwear = workwear,
-    Count = 1,
+    Count = 3,
     Date = new DateOnly(2022, 11, 30),
-    Remains = 1
+    Remains = 3
 };
-
-ExtraditionInfo extraditionInfo = new()
+ReceiptInfo receiptInfo2 = new()
 {
-    Date = new DateOnly(2022, 12, 1),
-    Staff = staff,
-    Term = 3,
-    WorkWear = workwear
+    Provider = provider,
+    Workwear = workwear2,
+    Count = 3,
+    Date = new DateOnly(2022, 11, 30),
+    Remains = 3
 };
 
 using (var dbContext = new AowDbContextFactory().CreateDbContext())
 {
-    /*dbContext.Add(staff);
-    dbContext.Add(provider);
-    dbContext.Add(workwear);
-    dbContext.Add(receiptInfo);*/
+    dbContext.AddRange(staff);
+    dbContext.Add(receiptInfo);
+    dbContext.Add(receiptInfo2);
+    /*dbContext.Add(provider);
+    dbContext.Add(workwear);*/
 
-    ExtraditionInfo _extraditionInfo = new()
+
+    /*ExtraditionInfo _extraditionInfo = new()
     {
         Date = new DateOnly(2022, 12, 1),
         Staff = dbContext.Staff.FirstOrDefault(s => s.FirstName == staff.FirstName),
@@ -60,7 +87,7 @@ using (var dbContext = new AowDbContextFactory().CreateDbContext())
         WorkWear = dbContext.Workwear.FirstOrDefault(s => s.Name == workwear.Name)
     };
 
-    dbContext.Add(_extraditionInfo);
+    dbContext.Add(_extraditionInfo);*/
     dbContext.SaveChanges();
 
 
