@@ -1,8 +1,10 @@
 ﻿using AoW.EntityFramework.Date;
 using AoW.EntityFramework.Models;
+using AoW.WPF.Infrastructure.DataMessage;
 using AoW.WPF.ViewModels.Base;
 using Microsoft.EntityFrameworkCore;
 using MyMVVM.Commands;
+using MyMVVM.DataTransfer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,11 +20,14 @@ namespace AoW.WPF.ViewModels
     {
         public WorkwearViewModel(StaffViewModel staffViewModel, Staff staff)
         {
-            _staffViewModel = staffViewModel;            
-            _staff = staff;
+            WorkwearDataMessage dataMessage = (WorkwearDataMessage)DataContainer.GetInstance().GetDataMessage();
+            _staffViewModel = dataMessage.StaffViewModel;            
+            _staff = dataMessage.Staff;
+
             CancelCommand = new RelayCommand(CancelExecute, (obj) => true);
             ExtraditionCommand = new RelayCommand(ExtraditionExecute, ExtraditionCanExecute);
             UpdateListsAsync();
+
         }
 
         /// <summary>

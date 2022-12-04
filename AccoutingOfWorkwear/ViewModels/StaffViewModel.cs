@@ -1,7 +1,9 @@
 ﻿using AoW.EntityFramework.Date;
 using AoW.EntityFramework.Models;
+using AoW.WPF.Infrastructure.DataMessage;
 using AoW.WPF.ViewModels.Base;
 using MyMVVM.Commands;
+using MyMVVM.DataTransfer;
 using System.Collections;
 using System.Linq;
 using System.Threading;
@@ -33,6 +35,9 @@ namespace AoW.WPF.ViewModels
         // метод
         private void SelectWorkwearExecute(object obj)
         {
+            DataMessage dataMessage = new WorkwearDataMessage(this, SelectedItem);
+            DataContainer.GetInstance().SendDataMessage(dataMessage);
+
             //MainViewModel.Navigator.CurrentViewModel = new WorkwearViewModel(this, SelectedItem);
         }
 
