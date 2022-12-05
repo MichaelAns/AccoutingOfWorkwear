@@ -35,10 +35,15 @@ namespace AccoutingOfWorkwear
             services.AddSingleton<IViewModelFactory<WorkwearViewModel>, WorkwearViewModelFactory>();*/
 
             services.AddSingleton<IViewModelFactory<MainViewModel>, MainViewModelFactory>();
+            services.AddSingleton<IViewModelFactory<WorkwearViewModel>, WorkwearViewModelFactory>();
 
             services.AddSingleton<IViewModelFactory<StaffViewModel>>((services) =>
             new StaffViewModelFactory(new ViewModelFactoryRenavigator<WorkwearViewModel>(
                 services.GetRequiredService<INavigator>(), services.GetRequiredService<IViewModelFactory<WorkwearViewModel>>())));
+
+            /*services.AddSingleton<IViewModelFactory<WorkwearViewModel>>((services) =>
+            new WorkwearViewModelFactory(new ViewModelFactoryRenavigator<MainViewModel>(
+                services.GetRequiredService<INavigator>(), services.GetRequiredService<IViewModelFactory<MainViewModel>>())));*/
 
             services.AddSingleton<IViewModelFactory<WorkwearViewModel>>((services) =>
             new WorkwearViewModelFactory(new ViewModelFactoryRenavigator<MainViewModel>(

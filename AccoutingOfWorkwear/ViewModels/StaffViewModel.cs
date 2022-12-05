@@ -15,10 +15,12 @@ namespace AoW.WPF.ViewModels
 {
     internal class StaffViewModel : BaseEntityViewModel<Staff>
     {
-        public StaffViewModel(IRenavigator renavigator) : base(renavigator)
+        public StaffViewModel(IRenavigator renavigator)
         {
             SelectWorkwearCommand = new RelayCommand(SelectWorkwearExecute, SelectWorkwearCanExecute);
+            _renavigator = renavigator;
         }
+        private readonly IRenavigator _renavigator;
 
         protected override async Task<ICollection> Get()
         {

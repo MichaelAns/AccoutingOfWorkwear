@@ -12,15 +12,15 @@ namespace AoW.WPF.ViewModels.Base
     internal abstract class BaseEntityViewModel<Model> : ViewModel
         where Model : BaseEntity
     {
-        public BaseEntityViewModel(IRenavigator renavigator)
+        public BaseEntityViewModel()
         {
             LoadAsync();
-            _renavigator = renavigator;
+            //_renavigator = renavigator;
         }
 
         private List<Model> _models;
         private Model _selectedItem;
-        protected IRenavigator _renavigator;
+        //protected IRenavigator _renavigator;
 
         /// <summary>
         /// Список всех записей

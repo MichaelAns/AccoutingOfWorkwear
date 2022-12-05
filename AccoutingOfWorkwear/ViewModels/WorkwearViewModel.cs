@@ -19,7 +19,7 @@ namespace AoW.WPF.ViewModels
 {
     internal class WorkwearViewModel : BaseEntityViewModel<ReceiptInfo>
     {
-        public WorkwearViewModel(IRenavigator renavigator) : base(renavigator)
+        public WorkwearViewModel()
         {
             // Получение данных из Контейнера данных
             WorkwearDataMessage dataMessage = (WorkwearDataMessage)DataContainer.GetInstance().GetDataMessage();
@@ -162,7 +162,7 @@ namespace AoW.WPF.ViewModels
         /// </summary>
         private void BackToStaff()
         {
-            _renavigator.Renavigate();
+            //_renavigator.Renavigate();
         }
 
         /// <summary>
