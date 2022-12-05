@@ -4,6 +4,7 @@ using AoW.WPF.Infrastructure.DataMessage;
 using AoW.WPF.ViewModels.Base;
 using MyMVVM.Commands;
 using MyMVVM.DataTransfer;
+using MyMVVM.Navigation.Navigators;
 using System.Collections;
 using System.Linq;
 using System.Threading;
@@ -14,7 +15,7 @@ namespace AoW.WPF.ViewModels
 {
     internal class StaffViewModel : BaseEntityViewModel<Staff>
     {
-        public StaffViewModel()
+        public StaffViewModel(IRenavigator renavigator) : base(renavigator)
         {
             SelectWorkwearCommand = new RelayCommand(SelectWorkwearExecute, SelectWorkwearCanExecute);
         }
@@ -37,7 +38,7 @@ namespace AoW.WPF.ViewModels
         {
             DataMessage dataMessage = new WorkwearDataMessage(this, SelectedItem);
             DataContainer.GetInstance().SendDataMessage(dataMessage);
-
+            _renavigator.Renavigate();
         }
 
         // проверка

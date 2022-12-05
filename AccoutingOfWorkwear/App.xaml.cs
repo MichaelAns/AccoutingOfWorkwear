@@ -2,7 +2,6 @@
 using AoW.EntityFramework.Date;
 using AoW.WPF.Infrastructure.Factorys;
 using AoW.WPF.ViewModels;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using MyMVVM.Navigation.Factory;
 using MyMVVM.Navigation.Navigators;
@@ -17,7 +16,7 @@ namespace AccoutingOfWorkwear
     /// </summary>
     public partial class App : Application
     {
-        protected override async void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
             IServiceProvider serviceProvider = CreateServiceProvider();
 
@@ -29,13 +28,24 @@ namespace AccoutingOfWorkwear
         {
             IServiceCollection services = new ServiceCollection();
 
-            services.AddSingleton<AowDbContextFactory>(); 
+            services.AddSingleton<AowDbContextFactory>();
+            
             services.AddSingleton<IViewModelAbstractFactory, AowViewModelAbstractFactory>();
-            services.AddSingleton<IViewModelFactory<StaffViewModel>, StaffViewModelFactory>();
-            services.AddSingleton<IViewModelFactory<WorkwearViewModel>, WorkwearViewModelFactory>();
+            /*services.AddSingleton<IViewModelFactory<StaffViewModel>, StaffViewModelFactory>();
+            services.AddSingleton<IViewModelFactory<WorkwearViewModel>, WorkwearViewModelFactory>();*/
+
+            services.AddSingleton<IViewModelFactory<MainViewModel>, MainViewModelFactory>();
+
+            services.AddSingleton<IViewModelFactory<StaffViewModel>>((services) =>
+            new StaffViewModelFactory(new ViewModelFactoryRenavigator<WorkwearViewModel>(
+                services.GetRequiredService<INavigator>(), services.GetRequiredService<IViewModelFactory<WorkwearViewModel>>())));
+
+            services.AddSingleton<IViewModelFactory<WorkwearViewModel>>((services) =>
+            new WorkwearViewModelFactory(new ViewModelFactoryRenavigator<MainViewModel>(
+                services.GetRequiredService<INavigator>(), services.GetRequiredService<IViewModelFactory<MainViewModel>>())));
 
             services.AddScoped<INavigator, Navigator>();
-            services.AddScoped<ViewModel, StaffViewModel>();
+            services.AddScoped<ViewModel, MainViewModel>();
             services.AddScoped<MainViewModel>();
 
             services.AddScoped<MainWindow>(s => new MainWindow(s.GetRequiredService<MainViewModel>()));

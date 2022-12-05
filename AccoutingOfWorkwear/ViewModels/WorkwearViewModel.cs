@@ -5,6 +5,7 @@ using AoW.WPF.ViewModels.Base;
 using Microsoft.EntityFrameworkCore;
 using MyMVVM.Commands;
 using MyMVVM.DataTransfer;
+using MyMVVM.Navigation.Navigators;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,8 +19,9 @@ namespace AoW.WPF.ViewModels
 {
     internal class WorkwearViewModel : BaseEntityViewModel<ReceiptInfo>
     {
-        public WorkwearViewModel()
+        public WorkwearViewModel(IRenavigator renavigator) : base(renavigator)
         {
+            // Получение данных из Контейнера данных
             WorkwearDataMessage dataMessage = (WorkwearDataMessage)DataContainer.GetInstance().GetDataMessage();
             _staffViewModel = dataMessage.StaffViewModel;
             _staff = dataMessage.Staff;
@@ -160,7 +162,7 @@ namespace AoW.WPF.ViewModels
         /// </summary>
         private void BackToStaff()
         {
-            //MainViewModel.Navigator.CurrentViewModel = _staffViewModel;
+            _renavigator.Renavigate();
         }
 
         /// <summary>
