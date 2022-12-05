@@ -1,4 +1,5 @@
 ﻿using AoW.EntityFramework.Models.Base;
+using MyMVVM.Navigation.Navigators;
 using MyMVVM.ViewModelBase;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ namespace AoW.WPF.ViewModels.Base
         public BaseEntityViewModel()
         {
             LoadAsync();
+            //_renavigator = renavigator;
         }
 
         private List<Model> _models;
         private Model _selectedItem;
+        //protected IRenavigator _renavigator;
 
         /// <summary>
         /// Список всех записей

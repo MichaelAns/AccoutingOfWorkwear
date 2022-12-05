@@ -1,8 +1,11 @@
 ﻿using AoW.EntityFramework.Date;
 using AoW.EntityFramework.Models;
+using AoW.WPF.Infrastructure.DataMessage;
 using AoW.WPF.ViewModels.Base;
 using Microsoft.EntityFrameworkCore;
 using MyMVVM.Commands;
+using MyMVVM.DataTransfer;
+using MyMVVM.Navigation.Navigators;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,14 +19,21 @@ namespace AoW.WPF.ViewModels
 {
     internal class WorkwearViewModel : BaseEntityViewModel<ReceiptInfo>
     {
-        public WorkwearViewModel(StaffViewModel staffViewModel, Staff staff)
+        public WorkwearViewModel(IRenavigator renavigator)
         {
-            _staffViewModel = staffViewModel;            
-            _staff = staff;
+            // Получение данных из Контейнера данных
+            WorkwearDataMessage dataMessage = (WorkwearDataMessage)DataContainer.GetInstance().GetDataMessage();
+            _staffViewModel = dataMessage.StaffViewModel;
+            _staff = dataMessage.Staff;
+
+            _renavigator = renavigator;
             CancelCommand = new RelayCommand(CancelExecute, (obj) => true);
             ExtraditionCommand = new RelayCommand(ExtraditionExecute, ExtraditionCanExecute);
+
             UpdateListsAsync();
+            
         }
+        private readonly IRenavigator _renavigator;
 
         /// <summary>
         /// Срок выдачи одежды. Пусть будет три
@@ -155,7 +165,7 @@ namespace AoW.WPF.ViewModels
         /// </summary>
         private void BackToStaff()
         {
-            MainViewModel.Navigator.CurrentViewModel = _staffViewModel;
+            _renavigator.Renavigate();
         }
 
         /// <summary>

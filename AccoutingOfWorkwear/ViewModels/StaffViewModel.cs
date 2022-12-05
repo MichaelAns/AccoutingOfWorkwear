@@ -1,7 +1,10 @@
 ﻿using AoW.EntityFramework.Date;
 using AoW.EntityFramework.Models;
+using AoW.WPF.Infrastructure.DataMessage;
 using AoW.WPF.ViewModels.Base;
 using MyMVVM.Commands;
+using MyMVVM.DataTransfer;
+using MyMVVM.Navigation.Navigators;
 using System.Collections;
 using System.Linq;
 using System.Threading;
@@ -12,10 +15,12 @@ namespace AoW.WPF.ViewModels
 {
     internal class StaffViewModel : BaseEntityViewModel<Staff>
     {
-        public StaffViewModel()
+        public StaffViewModel(IRenavigator renavigator)
         {
             SelectWorkwearCommand = new RelayCommand(SelectWorkwearExecute, SelectWorkwearCanExecute);
+            _renavigator = renavigator;
         }
+        private readonly IRenavigator _renavigator;
 
         protected override async Task<ICollection> Get()
         {
@@ -33,7 +38,9 @@ namespace AoW.WPF.ViewModels
         // метод
         private void SelectWorkwearExecute(object obj)
         {
-            MainViewModel.Navigator.CurrentViewModel = new WorkwearViewModel(this, SelectedItem);
+            DataMessage dataMessage = new WorkwearDataMessage(this, SelectedItem);
+            DataContainer.GetInstance().SendDataMessage(dataMessage);
+            _renavigator.Renavigate();
         }
 
         // проверка

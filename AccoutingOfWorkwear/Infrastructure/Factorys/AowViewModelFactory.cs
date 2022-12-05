@@ -6,8 +6,18 @@ using System;
 
 namespace AoW.WPF.Infrastructure.Factorys
 {
-    internal class AowViewModelFactory : IViewModelAbstractFactory
-    {
+    internal class AowViewModelFactory : IViewModelFactory
+    {  
+        private readonly CreateViewModel<StaffViewModel> _createStaffViewModel;
+        private readonly CreateViewModel<WorkwearViewModel> _createWorkwearViewModel;
+
+        public AowViewModelFactory(CreateViewModel<StaffViewModel> createStaffViewModel,
+            CreateViewModel<WorkwearViewModel> createWorkwearViewModel)
+        {
+            _createStaffViewModel = createStaffViewModel;
+            _createWorkwearViewModel = createWorkwearViewModel;
+        }
+
         public ViewModel GetViewModel(object? parameter)
         {
             if (parameter is ViewType)
@@ -16,14 +26,16 @@ namespace AoW.WPF.Infrastructure.Factorys
                 switch (viewType)
                 {
                     case ViewType.Staff:
-                        return new StaffViewModel();
+                        return _createStaffViewModel();
+                    case ViewType.Workwear:
+                        return _createWorkwearViewModel();
                     default:
                         throw new Exception();
                 }
             }
             else
             {
-                throw new Exception();
+                throw new Exception("parameter is not ViewType");
             }
         }
     }
