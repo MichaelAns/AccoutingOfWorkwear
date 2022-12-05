@@ -31,6 +31,8 @@ namespace AccoutingOfWorkwear
 
             services.AddSingleton<AowDbContextFactory>(); 
             services.AddSingleton<IViewModelAbstractFactory, AowViewModelAbstractFactory>();
+            services.AddSingleton<IViewModelFactory<StaffViewModel>, StaffViewModelFactory>();
+            services.AddSingleton<IViewModelFactory<WorkwearViewModel>, WorkwearViewModelFactory>();
 
             services.AddScoped<INavigator, Navigator>();
             services.AddScoped<ViewModel, StaffViewModel>();
