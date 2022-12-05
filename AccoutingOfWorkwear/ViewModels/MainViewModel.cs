@@ -9,7 +9,7 @@ namespace AoW.WPF.ViewModels
 {
     internal class MainViewModel : ViewModel
     {
-        public MainViewModel(INavigator navigator, IViewModelAbstractFactory viewModelAbstractFactory)
+        public MainViewModel(INavigator navigator, IViewModelFactory viewModelAbstractFactory)
         {
             Navigator = navigator;
             UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, viewModelAbstractFactory);

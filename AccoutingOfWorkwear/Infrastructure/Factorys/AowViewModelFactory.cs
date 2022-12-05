@@ -6,17 +6,16 @@ using System;
 
 namespace AoW.WPF.Infrastructure.Factorys
 {
-    internal class AowViewModelAbstractFactory : IViewModelAbstractFactory
-    {
-        // Фабрики
-        private readonly IViewModelFactory<StaffViewModel> _staffViewModelFactory;
-        private readonly IViewModelFactory<WorkwearViewModel> _workwearViewModelFactory;
+    internal class AowViewModelFactory : IViewModelFactory
+    {  
+        private readonly CreateViewModel<StaffViewModel> _createStaffViewModel;
+        private readonly CreateViewModel<WorkwearViewModel> _createWorkwearViewModel;
 
-        public AowViewModelAbstractFactory(IViewModelFactory<StaffViewModel> staffViewModelFactory, 
-            IViewModelFactory<WorkwearViewModel> workwearViewModelFactory)
+        public AowViewModelFactory(CreateViewModel<StaffViewModel> createStaffViewModel,
+            CreateViewModel<WorkwearViewModel> createWorkwearViewModel)
         {
-            _staffViewModelFactory = staffViewModelFactory;
-            _workwearViewModelFactory = workwearViewModelFactory;
+            _createStaffViewModel = createStaffViewModel;
+            _createWorkwearViewModel = createWorkwearViewModel;
         }
 
         public ViewModel GetViewModel(object? parameter)
@@ -27,9 +26,9 @@ namespace AoW.WPF.Infrastructure.Factorys
                 switch (viewType)
                 {
                     case ViewType.Staff:
-                        return _staffViewModelFactory.CreateViewModel();
+                        return _createStaffViewModel();
                     case ViewType.Workwear:
-                        return _workwearViewModelFactory.CreateViewModel();
+                        return _createWorkwearViewModel();
                     default:
                         throw new Exception();
                 }

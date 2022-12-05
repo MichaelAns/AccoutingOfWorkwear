@@ -19,18 +19,21 @@ namespace AoW.WPF.ViewModels
 {
     internal class WorkwearViewModel : BaseEntityViewModel<ReceiptInfo>
     {
-        public WorkwearViewModel()
+        public WorkwearViewModel(IRenavigator renavigator)
         {
             // Получение данных из Контейнера данных
             WorkwearDataMessage dataMessage = (WorkwearDataMessage)DataContainer.GetInstance().GetDataMessage();
             _staffViewModel = dataMessage.StaffViewModel;
             _staff = dataMessage.Staff;
 
+            _renavigator = renavigator;
             CancelCommand = new RelayCommand(CancelExecute, (obj) => true);
             ExtraditionCommand = new RelayCommand(ExtraditionExecute, ExtraditionCanExecute);
 
             UpdateListsAsync();
+            
         }
+        private readonly IRenavigator _renavigator;
 
         /// <summary>
         /// Срок выдачи одежды. Пусть будет три
@@ -162,7 +165,7 @@ namespace AoW.WPF.ViewModels
         /// </summary>
         private void BackToStaff()
         {
-            //_renavigator.Renavigate();
+            _renavigator.Renavigate();
         }
 
         /// <summary>

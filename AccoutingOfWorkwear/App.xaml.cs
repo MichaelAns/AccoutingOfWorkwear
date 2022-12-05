@@ -28,26 +28,35 @@ namespace AccoutingOfWorkwear
         {
             IServiceCollection services = new ServiceCollection();
 
-            services.AddSingleton<AowDbContextFactory>();
-            
-            services.AddSingleton<IViewModelAbstractFactory, AowViewModelAbstractFactory>();
-            /*services.AddSingleton<IViewModelFactory<StaffViewModel>, StaffViewModelFactory>();
-            services.AddSingleton<IViewModelFactory<WorkwearViewModel>, WorkwearViewModelFactory>();*/
+            services.AddSingleton<AowDbContextFactory>();            
+            services.AddSingleton<IViewModelFactory, AowViewModelFactory>();
 
-            services.AddSingleton<IViewModelFactory<MainViewModel>, MainViewModelFactory>();
-            services.AddSingleton<IViewModelFactory<WorkwearViewModel>, WorkwearViewModelFactory>();
+            services.AddSingleton<CreateViewModel<MainViewModel>>(services =>
+            {
+                return () => services.GetRequiredService<MainViewModel>();
+            });            
 
-            services.AddSingleton<IViewModelFactory<StaffViewModel>>((services) =>
-            new StaffViewModelFactory(new ViewModelFactoryRenavigator<WorkwearViewModel>(
-                services.GetRequiredService<INavigator>(), services.GetRequiredService<IViewModelFactory<WorkwearViewModel>>())));
+            services.AddSingleton<CreateViewModel<WorkwearViewModel>>(services =>
+            {
+                /*return () => new WorkwearViewModel(
+                    new ViewModelDelegatingRenavigator<MainViewModel>(
+                        services.GetRequiredService<INavigator>(),
+                        services.GetRequiredService<CreateViewModel<MainViewModel>>()));*/
+                return () => new WorkwearViewModel(
+                    new ViewModelDelegatingRenavigator<StaffViewModel>(
+                        services.GetRequiredService<INavigator>(),
+                        services.GetRequiredService<CreateViewModel<StaffViewModel>>()));
+            });
 
-            /*services.AddSingleton<IViewModelFactory<WorkwearViewModel>>((services) =>
-            new WorkwearViewModelFactory(new ViewModelFactoryRenavigator<MainViewModel>(
-                services.GetRequiredService<INavigator>(), services.GetRequiredService<IViewModelFactory<MainViewModel>>())));*/
+            services.AddSingleton<CreateViewModel<StaffViewModel>>(services =>
+            {
+                return () => services.GetRequiredService<StaffViewModel>();
+            });
 
-            services.AddSingleton<IViewModelFactory<WorkwearViewModel>>((services) =>
-            new WorkwearViewModelFactory(new ViewModelFactoryRenavigator<MainViewModel>(
-                services.GetRequiredService<INavigator>(), services.GetRequiredService<IViewModelFactory<MainViewModel>>())));
+            services.AddSingleton<StaffViewModel>(services => new StaffViewModel(
+                    new ViewModelDelegatingRenavigator<WorkwearViewModel>(
+                        services.GetRequiredService<INavigator>(),
+                        services.GetRequiredService<CreateViewModel<WorkwearViewModel>>())));
 
             services.AddScoped<INavigator, Navigator>();
             services.AddScoped<ViewModel, MainViewModel>();
