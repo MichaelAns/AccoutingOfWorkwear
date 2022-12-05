@@ -18,16 +18,16 @@ namespace AoW.WPF.ViewModels
 {
     internal class WorkwearViewModel : BaseEntityViewModel<ReceiptInfo>
     {
-        public WorkwearViewModel(StaffViewModel staffViewModel, Staff staff)
+        public WorkwearViewModel()
         {
             WorkwearDataMessage dataMessage = (WorkwearDataMessage)DataContainer.GetInstance().GetDataMessage();
-            _staffViewModel = dataMessage.StaffViewModel;            
+            _staffViewModel = dataMessage.StaffViewModel;
             _staff = dataMessage.Staff;
 
             CancelCommand = new RelayCommand(CancelExecute, (obj) => true);
             ExtraditionCommand = new RelayCommand(ExtraditionExecute, ExtraditionCanExecute);
-            UpdateListsAsync();
 
+            UpdateListsAsync();
         }
 
         /// <summary>

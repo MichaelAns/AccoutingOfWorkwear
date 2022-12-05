@@ -38,7 +38,6 @@ namespace AoW.WPF.ViewModels
             DataMessage dataMessage = new WorkwearDataMessage(this, SelectedItem);
             DataContainer.GetInstance().SendDataMessage(dataMessage);
 
-            //MainViewModel.Navigator.CurrentViewModel = new WorkwearViewModel(this, SelectedItem);
         }
 
         // проверка
