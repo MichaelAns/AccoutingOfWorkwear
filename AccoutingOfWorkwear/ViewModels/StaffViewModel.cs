@@ -38,8 +38,8 @@ namespace AoW.WPF.ViewModels
         // метод
         private void SelectWorkwearExecute(object obj)
         {
-            DataMessage dataMessage = new WorkwearDataMessage(this, SelectedItem);
-            DataContainer.GetInstance().SendDataMessage(dataMessage);
+            var dataMessage = new WorkwearDataMessage(this, SelectedItem);
+            DataContainer.GetInstance().SendDataMessage(new WorkwearDataMessage(this, SelectedItem));
             _renavigator.Renavigate();
         }
 
