@@ -19,7 +19,7 @@ namespace AccoutingOfWorkwear
         protected override void OnStartup(StartupEventArgs e)
         {
             IServiceProvider serviceProvider = CreateServiceProvider();
-
+            
             Window window = serviceProvider.GetRequiredService<MainWindow>();
             window.Show();
             base.OnStartup(e);

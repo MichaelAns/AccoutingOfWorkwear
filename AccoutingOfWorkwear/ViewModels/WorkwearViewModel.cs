@@ -22,7 +22,7 @@ namespace AoW.WPF.ViewModels
         public WorkwearViewModel(IRenavigator renavigator)
         {
             // Получение данных из Контейнера данных
-            WorkwearDataMessage dataMessage = (WorkwearDataMessage)DataContainer.GetInstance().GetDataMessage();
+            var dataMessage = AowDataContainer.GetDataContainer().GetDataMessage();
             _staffViewModel = dataMessage.StaffViewModel;
             _staff = dataMessage.Staff;
 
