@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AoW.WPF.ViewModels.Base
@@ -21,6 +22,30 @@ namespace AoW.WPF.ViewModels.Base
         private List<Model> _models;
         private Model _selectedItem;
         //protected IRenavigator _renavigator;
+        private Visibility _progressBarVisibility;
+        private Visibility _listBoxVisibility;
+
+        public Visibility ProgressBarVisibility
+        {
+            get => _progressBarVisibility;
+            set => Set(ref _progressBarVisibility, value);
+        }
+        public Visibility ListBoxVisibility
+        {
+            get => _listBoxVisibility;
+            set => Set(ref _listBoxVisibility, value);
+        }
+
+        private void BeginAnimation()
+        {
+            ProgressBarVisibility = Visibility.Visible;
+            ListBoxVisibility = Visibility.Collapsed;
+        }
+        private void EndAnimation()
+        {
+            ProgressBarVisibility = Visibility.Collapsed;
+            ListBoxVisibility = Visibility.Visible;
+        }
 
         /// <summary>
         /// Список всех записей
@@ -47,11 +72,13 @@ namespace AoW.WPF.ViewModels.Base
         {
             Get().ContinueWith(async task =>
             {
-                Thread.Sleep(3000);
+                BeginAnimation();
+                Thread.Sleep(5000);
                 if (task.Exception == null)
                 {
-                    Items = (List<Model>)task.Result;
+                    Items = (List<Model>)task.Result;                    
                 }
+                EndAnimation();
             });
         }
 

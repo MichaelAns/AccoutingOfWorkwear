@@ -43,6 +43,7 @@ namespace AoW.WPF.ViewModels
                 SelectedItem);
             var container = AowDataContainer.GetDataContainer();
             container.SendDataMessage(dataMessage);
+
             _renavigator.Renavigate();
         }
 

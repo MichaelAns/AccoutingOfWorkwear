@@ -30,8 +30,15 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
+                            <ProgressBar HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     Height="30"
+                                     Width="300"
+                                     IsIndeterminate="True"
+                                     Visibility="{Binding ProgressBarVisibility}"/>
                             <ListBox ItemsSource="{Binding Items}"
-                                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                     Visibility="{Binding ListBoxVisibility}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Margin="5">

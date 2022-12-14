@@ -4,7 +4,6 @@ using AoW.WPF.Infrastructure.DataMessage;
 using AoW.WPF.ViewModels.Base;
 using Microsoft.EntityFrameworkCore;
 using MyMVVM.Commands;
-using MyMVVM.DataTransfer;
 using MyMVVM.Navigation.Navigators;
 using System;
 using System.Collections;
