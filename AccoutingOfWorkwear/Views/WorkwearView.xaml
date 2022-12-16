@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"             
              xmlns:local="clr-namespace:AoW.WPF.Views"
              xmlns:enum="clr-namespace:AoW.WPF.Infrastructure.Enums"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="900">
     <Grid>
@@ -30,11 +31,9 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <ProgressBar HorizontalAlignment="Center"
+                            <Image gif:ImageBehavior.AnimatedSource="C:\Users\Borov\source\repos\AccoutingOfWorkwear\AccoutingOfWorkwear\Resources\noted.gif" 
+                                     HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     Height="30"
-                                     Width="300"
-                                     IsIndeterminate="True"
                                      Visibility="{Binding ProgressBarVisibility}"/>
                             <ListBox ItemsSource="{Binding Items}"
                                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}"

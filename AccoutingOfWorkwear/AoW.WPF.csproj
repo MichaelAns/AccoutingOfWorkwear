@@ -15,6 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\noted.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AoW.EntityFramework\AoW.EntityFramework.csproj" />
   </ItemGroup>
 
@@ -22,6 +30,10 @@
     <Reference Include="MyMVVM">
       <HintPath>..\..\MyMVVM\MyMVVM\bin\Release\net6.0-windows\MyMVVM.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\noted.gif" />
   </ItemGroup>
 
 </Project>
