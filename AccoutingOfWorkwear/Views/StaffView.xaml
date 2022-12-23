@@ -25,7 +25,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Image gif:ImageBehavior.AnimatedSource="C:\Users\Borov\source\repos\AccoutingOfWorkwear\AccoutingOfWorkwear\Resources\noted.gif" 
+                <Image gif:ImageBehavior.AnimatedSource="{Binding NotedPath}" 
                        HorizontalAlignment="Center"
                          VerticalAlignment="Center"
                          Visibility="{Binding ProgressBarVisibility}"/>

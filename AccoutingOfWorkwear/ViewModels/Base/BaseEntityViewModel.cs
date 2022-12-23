@@ -1,6 +1,7 @@
 ﻿using AoW.EntityFramework.Models.Base;
 using MyMVVM.Navigation.Navigators;
 using MyMVVM.ViewModelBase;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -16,6 +17,7 @@ namespace AoW.WPF.ViewModels.Base
         public BaseEntityViewModel()
         {
             LoadAsync();
+            NotedPath = new Uri("pack://application:,,,/Resources/noted.gif");
             //_renavigator = renavigator;
         }
 
@@ -24,6 +26,7 @@ namespace AoW.WPF.ViewModels.Base
         //protected IRenavigator _renavigator;
         private Visibility _progressBarVisibility;
         private Visibility _listBoxVisibility;
+        private Uri _notedPath;
 
         public Visibility ProgressBarVisibility
         {
@@ -34,6 +37,12 @@ namespace AoW.WPF.ViewModels.Base
         {
             get => _listBoxVisibility;
             set => Set(ref _listBoxVisibility, value);
+        }
+
+        public Uri NotedPath
+        {
+            get => _notedPath;
+            set => Set(ref _notedPath, value);
         }
 
         private void BeginAnimation()
